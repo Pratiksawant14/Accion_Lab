@@ -15,26 +15,41 @@ domain_mappings:
   agriculture:
     name: "Agriculture Crop Inspection"
     checkpoint: "checkpoints/Agriculture_bestweight.pt"
+    architecture: "yolov8n"
+    imgsz: 512
     expected_classes: 2
+    local_classes:
+      0: "healthy_crop"
+      1: "dead_crop"
     local_to_global:
       0: 0  # 0 -> healthy_crop
       1: 1  # 1 -> dead_crop
-    verified: false
+    verified: true
 
   ships:
     name: "Maritime Vessel Detection"
-    checkpoint: "checkpoints/best (1).pt"
+    checkpoint: "checkpoints/best.pt"
+    architecture: "yolo26n"
+    imgsz: 640
     expected_classes: 2
+    local_classes:
+      0: "cargo_ship"
+      1: "passenger_ship"
     local_to_global:
-      0: 2  # 0 -> cargo_ship (Tentative: to confirm via data.yaml)
-      1: 3  # 1 -> passenger_ship (Tentative: to confirm via data.yaml)
-    verified: false
+      0: 2  # 0 -> cargo_ship
+      1: 3  # 1 -> passenger_ship
+    verified: true
 
   space_electronics:
     name: "Space Electronics Solder & Trace Inspection"
     checkpoint: "checkpoints/space_electronics.pt"
+    architecture: "yolo26n"
+    imgsz: 640
     expected_classes: 2
+    local_classes:
+      0: "open"
+      1: "short"
     local_to_global:
-      0: 4  # 0 -> open (Tentative: must confirm via data.yaml whether 0 is open or short)
-      1: 5  # 1 -> short (Tentative: must confirm via data.yaml)
-    verified: false
+      0: 4  # 0 -> open
+      1: 5  # 1 -> short
+    verified: true

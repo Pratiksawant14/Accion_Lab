@@ -19,17 +19,17 @@ logger = logging.getLogger("CheckpointInspector")
 
 EXPECTED_CHECKPOINTS = {
     "agriculture": {
-        "filename": "Agriculture_bestweight.pt",
+        "filenames": ["Agriculture_bestweight.pt"],
         "domain": "Agriculture",
         "expected_classes": ["healthy_crop", "dead_crop"],
     },
     "ships": {
-        "filename": "best (1).pt",
+        "filenames": ["best.pt", "best (1).pt"],
         "domain": "Ships",
         "expected_classes": ["cargo_ship", "passenger_ship"],
     },
     "space_electronics": {
-        "filename": "space_electronics.pt",
+        "filenames": ["space_electronics.pt"],
         "domain": "Space Electronics",
         "expected_classes": ["open", "short"],
     },
@@ -92,11 +92,17 @@ def run_inventory(checkpoints_dir: Path) -> dict:
     print("=" * 80)
 
     for domain_key, spec in EXPECTED_CHECKPOINTS.items():
-        filepath = checkpoints_dir / spec["filename"]
-        print(f"\n[Domain: {spec['domain']}] Checkpoint: {spec['filename']}")
-        if not filepath.exists():
-            print(f"  STATUS: MISSING (Expected at: {filepath})")
-            report[domain_key] = {"status": "MISSING", "path": str(filepath)}
+        filepath = None
+        for fn in spec["filenames"]:
+            candidate = checkpoints_dir / fn
+            if candidate.exists():
+                filepath = candidate
+                break
+
+        print(f"\n[Domain: {spec['domain']}] Checkpoint: {spec['filenames']}")
+        if filepath is None:
+            print(f"  STATUS: MISSING (Checked: {spec['filenames']})")
+            report[domain_key] = {"status": "MISSING", "checked": spec["filenames"]}
             continue
 
         size_bytes = filepath.stat().st_size

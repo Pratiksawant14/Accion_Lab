@@ -90,20 +90,26 @@ The project specification establishes the following global 6-class taxonomy:
 | **4** | `open` | Space Electronics | Circuit discontinuity / broken trace / open solder joint |
 | **5** | `short` | Space Electronics | Unintended conductive path / solder bridge / short circuit |
 
-### 4.2 Local vs. Global Class ID Reconciliation
-*Warning:* Domain-specific checkpoints typically assign local classes beginning at index 0. For example:
-* Agriculture model: Local 0 = `healthy_crop`, Local 1 = `dead_crop`.
-* Ships model: Local 0 = `cargo_ship`, Local 1 = `passenger_ship` (or vice-versa).
-* Space Electronics model: Local 0 / 1 mapping between `open` and `short` must be extracted directly from `data.yaml`.
+### 4.2 Local vs. Global Class ID Reconciliation (VERIFIED & CONFIRMED)
+Direct inspection of checkpoint metadata on 2026-10-11 extracted and confirmed the exact local class ordering:
+* **Agriculture (`Agriculture_bestweight.pt`):**
+  * Local `0`: `healthy_crop` $\rightarrow$ **Global 0**
+  * Local `1`: `dead_crop` $\rightarrow$ **Global 1**
+* **Ships (`best.pt`):**
+  * Local `0`: `cargo_ship` $\rightarrow$ **Global 2**
+  * Local `1`: `passenger_ship` $\rightarrow$ **Global 3**
+* **Space Electronics (`space_electronics.pt`):**
+  * Local `0`: `open` $\rightarrow$ **Global 4**
+  * Local `1`: `short` $\rightarrow$ **Global 5**
 
-**Rule:** Model adapters **must not** emit raw local class IDs. The Unified Inference Router will translate local class IDs into Global IDs using verified domain translation tables:
+**Confirmed Rule:** Model adapters **must not** emit raw local class IDs. The Unified Inference Router translates local class IDs into Global IDs using verified domain translation tables:
 
 ```python
-# Conceptual translation mapping
+# Authoritative verified translation mapping (configs/taxonomy.yaml)
 CLASS_MAPPING_TABLE = {
-    "agriculture": {0: 0, 1: 1},        # Local -> Global
-    "ships": {0: 2, 1: 3},              # Subject to confirmation via data.yaml
-    "space_electronics": {0: 4, 1: 5}   # Subject to confirmation via data.yaml
+    "agriculture": {0: 0, 1: 1},        # healthy_crop -> 0, dead_crop -> 1 (VERIFIED)
+    "ships": {0: 2, 1: 3},              # cargo_ship -> 2, passenger_ship -> 3 (VERIFIED)
+    "space_electronics": {0: 4, 1: 5}   # open -> 4, short -> 5 (VERIFIED)
 }
 ```
 
@@ -161,34 +167,42 @@ Historical figures recorded from earlier project documentation vs. local verific
 
 ---
 
-## 7. Model Checkpoint Inventory & Health
+## 7. Model Checkpoint Inventory & Health (VERIFIED ON 2026-10-11)
 
-| Model Assignment | Filename | Current Workspace Path | File Size | Architecture / Version | Classes Count | Checkpoint Provenance | Verification Status |
-|---|---|---|---|---|---|---|---|
-| **Agriculture** | `Agriculture_bestweight.pt` | `checkpoints/Agriculture_bestweight.pt` | Unknown | Unverified (YOLOv8/v9/26?) | Expected 2 | Model Owner (Agriculture) | **MISSING LOCALLY** |
-| **Ships** | `best (1).pt` | `checkpoints/best (1).pt` | Unknown | Unverified (YOLOv8/v9/26?) | Expected 2 | Model Owner (Ships) | **MISSING LOCALLY** |
-| **Space Electronics** | `space_electronics.pt` | `checkpoints/space_electronics.pt` | Unknown | Unverified (YOLOv8/v9/26?) | Expected 2 | Model Owner (Electronics) | **MISSING LOCALLY** |
+| Model Assignment | Filename | Workspace Path | File Size | Architecture / Version | Resolution (`imgsz`) | Classes & Mapping | Checkpoint Provenance | Verification Status |
+|---|---|---|---|---|---|---|---|---|
+| **Agriculture** | `Agriculture_bestweight.pt` | `checkpoints/Agriculture_bestweight.pt` | 5.94 MB (6,232,106 B) | Ultralytics `yolov8n.pt` (v8.4.163) | 512x512 | `{0: 'healthy_crop', 1: 'dead_crop'}` | `C:\Users\kjkar\Downloads\train\...` | **VERIFIED (SAFE INTROSPECTION)**<br>SHA256: `4480b999...` |
+| **Ships** | `best.pt` | `checkpoints/best.pt` | 5.14 MB (5,388,613 B) | Ultralytics `yolo26n.pt` (v8.4.171) | 640x640 | `{0: 'cargo_ship', 1: 'passenger_ship'}` | `/content/ship_final_dataset/...` | **VERIFIED (SAFE INTROSPECTION)**<br>SHA256: `304f2f9b...` |
+| **Space Electronics** | `space_electronics.pt` | `checkpoints/space_electronics.pt` | 5.14 MB (5,388,549 B) | Ultralytics `yolo26n.pt` (v8.4.170) | 640x640 | `{0: 'open', 1: 'short'}` | `/content/space_dataset/...` | **VERIFIED (SAFE INTROSPECTION)**<br>SHA256: `50f7a458...` |
+
+### Key Checkpoint Discoveries:
+1. **Architectural Divergence:** Agriculture is built on **YOLOv8n** (`C2f` modules), whereas Ships and Space Electronics are built on **YOLO26n / YOLO11n** (`C3k2` + `C2PSA` + `PSABlock` modules). Direct weight tensor merging is structurally impossible and would crash.
+2. **Resolution Differences:** Agriculture was trained with `imgsz=512`, while Ships and Space Electronics were trained with `imgsz=640`. Model adapters must preserve domain-specific image preprocessing dimensions.
+3. **Training Provenance:**
+   - Agriculture was trained locally on CPU (patience=15, 50 epochs, batch=16, lr0=0.01).
+   - Ships was trained in Google Colab on GPU (patience=100, 50 epochs, batch=16, lr0=0.01).
+   - Space Electronics was trained in Google Colab on GPU (patience=100, 50 epochs, batch=16, lr0=0.01).
 
 ### Checkpoint Security & Integrity Rules:
-* PyTorch `.pt` files use pickle serialization which can execute arbitrary code upon deserialization.
-* **Rule:** Do not invoke blind `torch.load` with arbitrary weights from unverified sources without inspecting checkpoint structure using `torch.serialization.safe_globals` or safe extraction utilities.
-* Original checkpoints must be archived as read-only. Converted models (ONNX, TensorRT) must be stored in `artifacts/exports/` and never overwrite `.pt` source files.
+* PyTorch `.pt` files use pickle serialization. Introspection was performed non-destructively using a safe custom unpickler stubbing out class execution.
+* Original checkpoints are preserved in `checkpoints/`. Converted models (ONNX, TensorRT) must be stored in `artifacts/exports/` and never overwrite `.pt` source files.
 
 ---
 
 ## 8. Artifacts & Information Request Tracker
 
-| Requested Artifact | Source | Criticality | Status | Received Date | File Path / Hash |
-|---|---|---|---|---|---|
-| `Agriculture_bestweight.pt` | Agriculture Model Owner | CRITICAL | **AWAITING** | - | - |
-| `best (1).pt` (Ships) | Ships Model Owner | CRITICAL | **AWAITING** | - | - |
-| `space_electronics.pt` | Space Electronics Model Owner | CRITICAL | **AWAITING** | - | - |
-| Agriculture `data.yaml` & Notebook | Agriculture Model Owner | HIGH | **AWAITING** | - | - |
-| Ships `data.yaml` & Notebook | Ships Model Owner | HIGH | **AWAITING** | - | - |
-| Electronics `data.yaml` & Notebook | Space Electronics Model Owner | HIGH | **AWAITING** | - | - |
-| Original Written Requirements Doc | Project Lead | HIGH | **AWAITING** | - | - |
-| Team 5C MQTT Schema Spec | Team 5C Lead | MEDIUM | **AWAITING** | - | - |
-| Validation Sample Images & Labels | Team 5A | HIGH | **AWAITING** | - | - |
+| Requested Artifact | Source | Criticality | Status | Received Date | File Path / Hash / Notes |
+|---|---|---|:---:|:---:|---|
+| `Agriculture_bestweight.pt` | Agriculture Model Owner | CRITICAL | **RECEIVED** | 2026-10-11 | `checkpoints/Agriculture_bestweight.pt` (SHA: `4480b999...`) |
+| `best.pt` (Ships) | Ships Model Owner | CRITICAL | **RECEIVED** | 2026-10-11 | `checkpoints/best.pt` (SHA: `304f2f9b...`) |
+| `space_electronics.pt` | Space Electronics Model Owner | CRITICAL | **RECEIVED** | 2026-10-11 | `checkpoints/space_electronics.pt` (SHA: `50f7a458...`) |
+| Agriculture `data.yaml` & Notebook | Agriculture Model Owner | MEDIUM | **EMBEDDED EXTRACTED** | 2026-10-11 | Classes & params recovered from ckpt; notebook optional for audit |
+| Ships `data.yaml` & Notebook | Ships Model Owner | MEDIUM | **EMBEDDED EXTRACTED** | 2026-10-11 | Classes & params recovered from ckpt; notebook optional for audit |
+| Electronics `data.yaml` & Notebook | Space Electronics Model Owner | MEDIUM | **EMBEDDED EXTRACTED** | 2026-10-11 | Classes & params recovered from ckpt; notebook optional for audit |
+| Validation Sample Images & Labels (All 3 Domains) | Team 5A / Model Owners | **HIGH** | **AWAITING** | - | Needed for evaluation, mAP benchmark, and ONNX equivalence |
+| Original Training `results.csv` / Baseline Metrics | Model Owners | MEDIUM | **AWAITING** | - | Needed to establish reference baseline mAP |
+| Team 5C MQTT Schema & Broker Spec | Team 5C Lead | HIGH | **AWAITING** | - | Broker host/port, topic naming, and payload JSON contract |
+| Original Written Requirements Doc | Project Lead | MEDIUM | **AWAITING** | - | For formal audit sign-off |
 
 ---
 
@@ -308,11 +322,11 @@ The automated training pipeline will be built incrementally, targeting the **Shi
 
 | Risk ID | Description | Likelihood | Impact | Mitigation Strategy | Owner | Status |
 |:---:|---|:---:|:---:|---|:---:|:---:|
-| **RSK-01** | Missing Checkpoint Files in workspace | HIGH | HIGH | Establish clear folder structure and request checkpoints from user immediately. | Team 5B Lead | **ACTIVE BLOCKER** |
-| **RSK-02** | Unverified Local Class ID Order (e.g. `open` vs `short`) | HIGH | HIGH | Require `data.yaml` from model owners before enabling global class mapping. | Team 5B Lead | **ACTIVE** |
-| **RSK-03** | YOLO Version Discrepancy (YOLO26 vs v8/v9) | MEDIUM | MEDIUM | Abstract model loading behind `BaseModelAdapter`; clarify version with Project Lead. | MLOps Eng | **ACTIVE** |
+| **RSK-01** | Missing Checkpoint Files in workspace | LOW | HIGH | All 3 checkpoints received, SHA-256 verified, and safely inspected. | Team 5B Lead | **RESOLVED** |
+| **RSK-02** | Unverified Local Class ID Order (e.g. `open` vs `short`) | LOW | HIGH | Local class orders extracted from checkpoints and verified in configs/taxonomy.yaml. | Team 5B Lead | **RESOLVED** |
+| **RSK-03** | YOLO Version Discrepancy (YOLO26 vs v8/v9) | LOW | MEDIUM | Verified: Agriculture uses YOLOv8n (512x512); Ships and Electronics use YOLO26n (640x640). Adapters will encapsulate these differences. | MLOps Eng | **CLARIFIED & MITIGATED** |
 | **RSK-04** | Synthetic Data Pseudo-Bounding Boxes | MEDIUM | MEDIUM | Implement automated bounding box geometry validation to detect full-image boxes. | Data Eng | **MONITORED** |
-| **RSK-05** | Checkpoint Deserialization Vulnerabilities | LOW | HIGH | Inspect checkpoint structure safely; avoid unsafe pickle loading of unverified files. | Security / MLOps | **ACTIVE** |
+| **RSK-05** | Checkpoint Deserialization Vulnerabilities | LOW | HIGH | Inspect checkpoint structure safely; avoid unsafe pickle loading of unverified files. | Security / MLOps | **MITIGATED (SAFE UNPICKLER USED)** |
 | **RSK-06** | Hardware Incompatibility for TensorRT (Host CPU-only) | HIGH | HIGH | Host confirmed `torch.cuda.is_available() == False`. Standardize on ONNX Runtime CPU for local testing; isolate TensorRT build to remote/edge CUDA targets. | Edge Eng | **CONFIRMED & MITIGATED** |
 | **RSK-07** | MQTT Telemetry Schema Mismatch with Team 5C | HIGH | HIGH | Formalize schema early and validate against sample JSON fixtures before integration. | Systems Eng | **ACTIVE** |
 | **RSK-08** | Memory Exhaustion when Loading 3 Models Simultaneously | MEDIUM | HIGH | Implement lazy loading in domain router; unload inactive models if memory budget is tight. | Edge Eng | **PLANNED** |
@@ -322,24 +336,25 @@ The automated training pipeline will be built incrementally, targeting the **Shi
 ## 14. Current Status & Next Actions
 
 * **Last Updated:** 2026-10-11
-* **Current Phase:** Phase 0 — Onboarding, Environment Discovery & Source-of-Truth Documentation
+* **Current Phase:** Phase 1 — Model & Dataset Discovery (Completed for Checkpoints) $\rightarrow$ Phase 2/3 (Inference Architecture & Scaffolding)
 * **Verified Accomplishments:**
-  * Workspace `d:/Accion_Lab` inspected: clean directory confirmed.
-  * Git repository initialized in `d:/Accion_Lab`.
-  * Host environment verified: Python 3.13.7, PyTorch 2.10.0 (CPU mode, CUDA unavailable).
-  * Created canonical `PROJECT_SOURCE_OF_TRUTH.md` establishing project identity, requirements traceability, architecture strategy, class taxonomy, and risk register.
-  * Created `docs/ARTIFACT_INVENTORY.md` to track incoming checkpoints, notebooks, and dataset descriptors.
-  * Created `configs/taxonomy.yaml` with global taxonomy (classes 0–5) and domain mappings.
-  * Created `checkpoints/README.md` and safe checkpoint inspector `scripts/inspect_checkpoints.py`.
-  * Created `requirements.txt` and `.gitignore`.
-* **Active Work:**
-  * Ready to receive the 3 checkpoint `.pt` files and domain configurations.
-* **Active Blockers:**
-  * Checkpoint files (`Agriculture_bestweight.pt`, `best (1).pt`, `space_electronics.pt`) are not yet placed in `checkpoints/`.
-  * Training notebooks (`.ipynb`) and `data.yaml` descriptors have not yet been provided.
+  * All 3 checkpoint files placed in `checkpoints/`:
+    * `Agriculture_bestweight.pt` (5.94 MB, SHA: `4480b999...`)
+    * `best.pt` (5.14 MB, SHA: `304f2f9b...`)
+    * `space_electronics.pt` (5.14 MB, SHA: `50f7a458...`)
+  * Extracted complete checkpoint architecture & training metadata:
+    * **Agriculture:** `yolov8n.pt` @ `512x512`, `{0: 'healthy_crop', 1: 'dead_crop'}`
+    * **Ships:** `yolo26n.pt` @ `640x640`, `{0: 'cargo_ship', 1: 'passenger_ship'}`
+    * **Space Electronics:** `yolo26n.pt` @ `640x640`, `{0: 'open', 1: 'short'}`
+  * Confirmed that direct weight merging is structurally impossible due to `C2f` vs `C3k2/C2PSA` block divergence.
+  * Updated `configs/taxonomy.yaml` with verified local-to-global translations.
+* **Active Blockers & Dependencies:**
+  * Validation / test sample images and labels for each domain (needed for mAP evaluation, dataset validation, and ONNX numerical equivalence).
+  * Team 5C MQTT Broker credentials / topic schema.
 * **Immediate Next Actions (Ranked):**
-  1. User copies the 3 checkpoint files into `checkpoints/`.
-  2. Execute `python scripts/inspect_checkpoints.py` to verify hashes, sizes, and internal metadata.
-  3. Obtain and review `data.yaml` and training notebooks for the three domains to confirm local-to-global class mappings and exact model architectures.
-  4. Build baseline domain model adapters in `src/inference/adapters/`.
+  1. Build the canonical Unified Inference Engine schema and abstract adapter framework (`src/inference/`).
+  2. Implement domain-specific adapters (`AgricultureAdapter`, `ShipsAdapter`, `SpaceElectronicsAdapter`) with resolution-aware preprocessing (`512` vs `640`) and local-to-global taxonomy translation.
+  3. Implement the `UnifiedInferenceRouter` with domain routing and normalized output formatting.
+  4. Create unit tests for schema, routing, and taxonomy translation.
+  5. Receive validation image/label samples from collaborators when available.
 
