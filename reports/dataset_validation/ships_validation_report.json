@@ -1,0 +1,85 @@
+{
+  "domain": "ships",
+  "dataset_path": "D:\\Accion_Lab\\Synthline\\environmental defense\\ship_final_dataset",
+  "allowed_class_ids": [
+    0,
+    1
+  ],
+  "allowed_class_names": {
+    "0": "cargo_ship",
+    "1": "passenger_ship"
+  },
+  "splits": {
+    "train": {
+      "split_name": "train",
+      "total_images": 591,
+      "valid_images": 591,
+      "corrupt_images": 0,
+      "corrupt_image_files": [],
+      "total_labels": 489,
+      "valid_labels": 489,
+      "corrupt_labels": 0,
+      "corrupt_label_files": [],
+      "images_missing_labels": 481,
+      "orphan_labels": 379,
+      "total_bounding_boxes": 489,
+      "pseudo_boxes": 489,
+      "invalid_coordinate_boxes": 0,
+      "out_of_range_classes": 0,
+      "class_distribution": {
+        "0": 92,
+        "1": 397
+      },
+      "errors": []
+    },
+    "val": {
+      "split_name": "val",
+      "total_images": 213,
+      "valid_images": 213,
+      "corrupt_images": 0,
+      "corrupt_image_files": [],
+      "total_labels": 198,
+      "valid_labels": 198,
+      "corrupt_labels": 0,
+      "corrupt_label_files": [],
+      "images_missing_labels": 156,
+      "orphan_labels": 141,
+      "total_bounding_boxes": 198,
+      "pseudo_boxes": 198,
+      "invalid_coordinate_boxes": 0,
+      "out_of_range_classes": 0,
+      "class_distribution": {
+        "0": 118,
+        "1": 80
+      },
+      "errors": []
+    },
+    "test": {
+      "split_name": "test",
+      "total_images": 79,
+      "valid_images": 79,
+      "corrupt_images": 0,
+      "corrupt_image_files": [],
+      "total_labels": 80,
+      "valid_labels": 80,
+      "corrupt_labels": 0,
+      "corrupt_label_files": [],
+      "images_missing_labels": 66,
+      "orphan_labels": 67,
+      "total_bounding_boxes": 80,
+      "pseudo_boxes": 80,
+      "invalid_coordinate_boxes": 0,
+      "out_of_range_classes": 0,
+      "class_distribution": {
+        "0": 39,
+        "1": 41
+      },
+      "errors": []
+    }
+  },
+  "total_images_all_splits": 883,
+  "total_labels_all_splits": 767,
+  "total_boxes_all_splits": 767,
+  "total_pseudo_boxes_all_splits": 767,
+  "is_valid_for_training": true
+}

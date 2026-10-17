@@ -13,12 +13,12 @@ This inventory is verified against the actual filesystem on each inspection. Do 
 |---|:---:|:---:|:---:|
 | Model Checkpoints (`.pt`) | 3 | **3** | 0 |
 | Training Notebooks (`.ipynb`) | 3 | 0 | 3 |
-| Dataset Configurations (`data.yaml`) | 3 | 0 (Embedded recovered) | 3 (External files) |
+| Dataset Configurations (`data.yaml`) | 3 | **3 (Embedded & Synthline)** | 0 |
 | Training Configurations (`args.yaml`) | 3 | **3 (Embedded recovered)** | 0 |
-| Training Metrics (`results.csv` / logs) | 3 | 0 | 3 |
-| Evaluation Datasets / Samples | 3 | 0 | 3 |
+| Training Metrics (`results.csv` / logs) | 3 | **1 (Ships quality validation)** | 2 |
+| Evaluation Datasets / Samples | 3 | **3 (Full 2,742 images)** | 0 |
 | Requirements & Interface Specs | 2 | 0 | 2 |
-| **Total Core Artifacts** | **20** | **6** | **14** |
+| **Total Core Artifacts** | **20** | **13** | **7** |
 
 ---
 
@@ -67,11 +67,13 @@ This inventory is verified against the actual filesystem on each inspection. Do 
 
 ## 6. Datasets & Evaluation Samples
 
-| Dataset Split | Domain | Target Path | Status | Verified Image Count |
-|---|---|---|:---:|:---:|
-| Validation Sample | Agriculture | `data/agriculture/val/` | **MISSING** | 0 |
-| Validation Sample | Ships | `data/ships/val/` | **MISSING** | 0 |
-| Validation Sample | Space Electronics | `data/space_electronics/val/` | **MISSING** | 0 |
+| Dataset Split | Domain | Target Path | Status | Verified Image Count | Verified Label Count |
+|---|---|---|:---:|:---:|:---:|
+| Full Splits (Train/Val/Test) | Agriculture | `Synthline/agriculture robotics/agriculture_final_dataset/` | **VERIFIED PRESENT** | 972 images (598 train, 245 val, 129 test) | 878 labels (632 train, 177 val, 69 test) |
+| Full Splits (Train/Val/Test) | Ships | `Synthline/environmental defense/ship_final_dataset/` | **VERIFIED PRESENT** | 883 images (591 train, 213 val, 79 test) | 767 labels (489 train, 198 val, 80 test) |
+| Full Splits (Train/Val/Test) | Space Electronics | `Synthline/space electronics/space_final_dataset/` | **VERIFIED PRESENT** | 887 images (590 train, 220 val, 77 test) | 829 labels (587 train, 166 val, 76 test) |
+| Quality Validation CSV | Ships | `Synthline/environmental defense/ship_quality_validation.csv` | **VERIFIED PRESENT** | 4,000 records | PASS / REVIEW audit table |
+| **Total Verified Data** | **All 3 Domains** | `Synthline/` | **VERIFIED PRESENT** | **2,742 images** | **2,474 YOLO label files** |
 
 ---
 

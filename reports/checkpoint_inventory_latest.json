@@ -1,0 +1,29 @@
+{
+  "agriculture": {
+    "status": "PRESENT",
+    "path": "D:\\Accion_Lab\\checkpoints\\Agriculture_bestweight.pt",
+    "size_mb": 5.94,
+    "sha256": "4480b9996668c8f7d3b4e62fc1456e45ebed01cc52f7b2072ea16470ac093b4f",
+    "metadata": {
+      "inspection_error": "No module named 'ultralytics'"
+    }
+  },
+  "ships": {
+    "status": "PRESENT",
+    "path": "D:\\Accion_Lab\\checkpoints\\best.pt",
+    "size_mb": 5.14,
+    "sha256": "304f2f9b883473f1a307f5a976ee2afd0103d4cb0112a76995d28bc650f7c448",
+    "metadata": {
+      "inspection_error": "No module named 'ultralytics'"
+    }
+  },
+  "space_electronics": {
+    "status": "PRESENT",
+    "path": "D:\\Accion_Lab\\checkpoints\\space_electronics.pt",
+    "size_mb": 5.14,
+    "sha256": "50f7a4588d3f2996124cbe53f0ea7275a62db37313ce026d07d2c45b8a89645f",
+    "metadata": {
+      "inspection_error": "No module named 'ultralytics'"
+    }
+  }
+}

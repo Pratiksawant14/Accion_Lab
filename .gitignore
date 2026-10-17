@@ -43,8 +43,10 @@ checkpoints/*.onnx
 !checkpoints/README.md
 
 # Large Datasets
-data/
-datasets/
+/data/
+/datasets/
+/Synthline/
+!src/data/
 *.zip
 *.tar
 *.tar.gz

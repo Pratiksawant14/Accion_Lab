@@ -1,0 +1,85 @@
+{
+  "domain": "space_electronics",
+  "dataset_path": "D:\\Accion_Lab\\Synthline\\space electronics\\space_final_dataset",
+  "allowed_class_ids": [
+    0,
+    1
+  ],
+  "allowed_class_names": {
+    "0": "open",
+    "1": "short"
+  },
+  "splits": {
+    "train": {
+      "split_name": "train",
+      "total_images": 590,
+      "valid_images": 590,
+      "corrupt_images": 0,
+      "corrupt_image_files": [],
+      "total_labels": 587,
+      "valid_labels": 587,
+      "corrupt_labels": 0,
+      "corrupt_label_files": [],
+      "images_missing_labels": 407,
+      "orphan_labels": 404,
+      "total_bounding_boxes": 587,
+      "pseudo_boxes": 587,
+      "invalid_coordinate_boxes": 0,
+      "out_of_range_classes": 0,
+      "class_distribution": {
+        "0": 167,
+        "1": 420
+      },
+      "errors": []
+    },
+    "val": {
+      "split_name": "val",
+      "total_images": 220,
+      "valid_images": 220,
+      "corrupt_images": 0,
+      "corrupt_image_files": [],
+      "total_labels": 166,
+      "valid_labels": 166,
+      "corrupt_labels": 0,
+      "corrupt_label_files": [],
+      "images_missing_labels": 176,
+      "orphan_labels": 122,
+      "total_bounding_boxes": 166,
+      "pseudo_boxes": 166,
+      "invalid_coordinate_boxes": 0,
+      "out_of_range_classes": 0,
+      "class_distribution": {
+        "0": 95,
+        "1": 71
+      },
+      "errors": []
+    },
+    "test": {
+      "split_name": "test",
+      "total_images": 77,
+      "valid_images": 77,
+      "corrupt_images": 0,
+      "corrupt_image_files": [],
+      "total_labels": 76,
+      "valid_labels": 76,
+      "corrupt_labels": 0,
+      "corrupt_label_files": [],
+      "images_missing_labels": 67,
+      "orphan_labels": 66,
+      "total_bounding_boxes": 76,
+      "pseudo_boxes": 76,
+      "invalid_coordinate_boxes": 0,
+      "out_of_range_classes": 0,
+      "class_distribution": {
+        "0": 37,
+        "1": 39
+      },
+      "errors": []
+    }
+  },
+  "total_images_all_splits": 887,
+  "total_labels_all_splits": 829,
+  "total_boxes_all_splits": 829,
+  "total_pseudo_boxes_all_splits": 829,
+  "is_valid_for_training": true
+}

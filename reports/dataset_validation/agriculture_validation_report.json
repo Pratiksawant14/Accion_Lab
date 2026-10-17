@@ -1,0 +1,85 @@
+{
+  "domain": "agriculture",
+  "dataset_path": "D:\\Accion_Lab\\Synthline\\agriculture robotics\\agriculture_final_dataset",
+  "allowed_class_ids": [
+    0,
+    1
+  ],
+  "allowed_class_names": {
+    "0": "healthy_crop",
+    "1": "dead_crop"
+  },
+  "splits": {
+    "train": {
+      "split_name": "train",
+      "total_images": 598,
+      "valid_images": 598,
+      "corrupt_images": 0,
+      "corrupt_image_files": [],
+      "total_labels": 632,
+      "valid_labels": 632,
+      "corrupt_labels": 0,
+      "corrupt_label_files": [],
+      "images_missing_labels": 434,
+      "orphan_labels": 468,
+      "total_bounding_boxes": 632,
+      "pseudo_boxes": 632,
+      "invalid_coordinate_boxes": 0,
+      "out_of_range_classes": 0,
+      "class_distribution": {
+        "1": 309,
+        "0": 323
+      },
+      "errors": []
+    },
+    "val": {
+      "split_name": "val",
+      "total_images": 245,
+      "valid_images": 245,
+      "corrupt_images": 0,
+      "corrupt_image_files": [],
+      "total_labels": 177,
+      "valid_labels": 177,
+      "corrupt_labels": 0,
+      "corrupt_label_files": [],
+      "images_missing_labels": 183,
+      "orphan_labels": 115,
+      "total_bounding_boxes": 177,
+      "pseudo_boxes": 177,
+      "invalid_coordinate_boxes": 0,
+      "out_of_range_classes": 0,
+      "class_distribution": {
+        "1": 70,
+        "0": 107
+      },
+      "errors": []
+    },
+    "test": {
+      "split_name": "test",
+      "total_images": 129,
+      "valid_images": 129,
+      "corrupt_images": 0,
+      "corrupt_image_files": [],
+      "total_labels": 69,
+      "valid_labels": 69,
+      "corrupt_labels": 0,
+      "corrupt_label_files": [],
+      "images_missing_labels": 114,
+      "orphan_labels": 54,
+      "total_bounding_boxes": 69,
+      "pseudo_boxes": 69,
+      "invalid_coordinate_boxes": 0,
+      "out_of_range_classes": 0,
+      "class_distribution": {
+        "1": 34,
+        "0": 35
+      },
+      "errors": []
+    }
+  },
+  "total_images_all_splits": 972,
+  "total_labels_all_splits": 878,
+  "total_boxes_all_splits": 878,
+  "total_pseudo_boxes_all_splits": 878,
+  "is_valid_for_training": true
+}

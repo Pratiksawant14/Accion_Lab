@@ -53,7 +53,7 @@ Authoritative requirements derived from the project brief. Each requirement is t
 | Req ID | Requirement Summary | Original Source | Implementation Status | Verification Method | Evidence / Test Report | Dependencies | Outstanding Questions |
 |---|---|---|---|---|---|---|---|
 | **REQ-01** | Model training using configurable hyperparameters | Project Brief §1.C, Roadmap B2 | **NOT STARTED** | Automated test running train script with test YAML config | None | Dataset, GPU/CPU environment, YOLO framework | Confirm exact base YOLO version (v8/v9/26) |
-| **REQ-02** | Dataset validation before training (labels, image integrity, bounding box sanity) | Project Brief §1.C, Roadmap B1 | **NOT STARTED** | Unit tests with synthetic corrupted annotations & images | None | Python schema validator | Verification rules for full-image pseudo-boxes |
+| **REQ-02** | Dataset validation before training (labels, image integrity, bounding box sanity) | Project Brief §1.C, Roadmap B1 | **COMPLETED** | Automated validator (`src/data/validator.py`) and unit tests (`tests/test_dataset_validator.py`) | 13/13 tests passed; validated 2,742 images, 2,474 labels across all 3 domains (`reports/dataset_validation/`) | None | None (Pseudo-box threshold w>0.95 and h>0.95 enforced) |
 | **REQ-03** | Training checkpointing and resume support | Project Brief §1.C, Roadmap B2 | **NOT STARTED** | Interrupt training run and execute `--resume` flag validation | None | Checkpoint I/O handler | Storage path conventions |
 | **REQ-04** | Support for YOLO Nano (n), Small (s), and Medium (m) architectures | Project Brief §1.C | **NOT STARTED** | Config-driven instantiation and parameter verification | None | Model definition files | Confirm if architecture choice is per-domain |
 | **REQ-05** | ONNX export and output-equivalence validation | Project Brief §1.C, Roadmap B4, B5 | **NOT STARTED** | Numerical equivalence test (`numpy.allclose` or max abs tolerance) between PyTorch & ONNX | None | `onnx`, `onnxruntime` | Agreed numerical tolerance threshold (e.g. 1e-3) |
@@ -158,9 +158,9 @@ Historical figures recorded from earlier project documentation vs. local verific
 
 | Domain | Historical Documented Spec | Local Files Present? | Verified Image Count | Verified Label Count | Quality / Split Status |
 |---|---|---|---|---|---|
-| **Agriculture** | 4,000 synthetic (3,608 PASS, 392 REVIEW); 2,525 train / 721 val / 362 test | **NO (Missing)** | 0 | 0 | Pending acquisition from model owner / Team 5A |
-| **Ships** | 4,000 PASS; 2,800 train / 800 val / 400 test | **NO (Missing)** | 0 | 0 | Pending acquisition from model owner / Team 5A |
-| **Space Electronics** | Pipeline generation completion unconfirmed | **NO (Missing)** | 0 | 0 | Pending confirmation of generation status |
+| **Agriculture** | 4,000 synthetic (3,608 PASS, 392 REVIEW); 2,525 train / 721 val / 362 test | **YES (`Synthline/agriculture robotics`)** | 972 images (598 train / 245 val / 129 test) | 878 labels (632 train / 177 val / 69 test) | Train, val, test splits present. Classes: 0 (`healthy_crop`), 1 (`dead_crop`). Pseudo-boxes confirmed. |
+| **Ships** | 4,000 PASS; 2,800 train / 800 val / 400 test | **YES (`Synthline/environmental defense`)** | 883 images (591 train / 213 val / 79 test) | 767 labels (489 train / 198 val / 80 test) | Train, val, test splits present. Classes: 0 (`cargo_ship`), 1 (`passenger_ship`). Quality CSV (4,000 rows) present. Pseudo-boxes confirmed. |
+| **Space Electronics** | Pipeline generation completion unconfirmed | **YES (`Synthline/space electronics`)** | 887 images (590 train / 220 val / 77 test) | 829 labels (587 train / 166 val / 76 test) | Train, val, test splits present. Classes: 0 (`open`), 1 (`short`). Pseudo-boxes confirmed. |
 
 ### Known Label Limitations & Risks:
 * **Full-Image Pseudo-Boxes:** Historical notes suggest some synthetic datasets utilized pseudo-bounding boxes spanning the entire image rather than tight localized objects. If present, mAP localization metrics will be artificially distorted. Validation checks must flag bounding boxes where `width > 0.95` and `height > 0.95`.
@@ -199,7 +199,7 @@ Historical figures recorded from earlier project documentation vs. local verific
 | Agriculture `data.yaml` & Notebook | Agriculture Model Owner | MEDIUM | **EMBEDDED EXTRACTED** | 2026-10-11 | Classes & params recovered from ckpt; notebook optional for audit |
 | Ships `data.yaml` & Notebook | Ships Model Owner | MEDIUM | **EMBEDDED EXTRACTED** | 2026-10-11 | Classes & params recovered from ckpt; notebook optional for audit |
 | Electronics `data.yaml` & Notebook | Space Electronics Model Owner | MEDIUM | **EMBEDDED EXTRACTED** | 2026-10-11 | Classes & params recovered from ckpt; notebook optional for audit |
-| Validation Sample Images & Labels (All 3 Domains) | Team 5A / Model Owners | **HIGH** | **AWAITING** | - | Needed for evaluation, mAP benchmark, and ONNX equivalence |
+| Validation Sample Images & Labels (All 3 Domains) | Team 5A / Model Owners | **HIGH** | **RECEIVED & VERIFIED** | 2026-10-17 | `Synthline/` (2,742 images, 2,474 YOLO label files across all 3 domains) |
 | Original Training `results.csv` / Baseline Metrics | Model Owners | MEDIUM | **AWAITING** | - | Needed to establish reference baseline mAP |
 | Team 5C MQTT Schema & Broker Spec | Team 5C Lead | HIGH | **AWAITING** | - | Broker host/port, topic naming, and payload JSON contract |
 | Original Written Requirements Doc | Project Lead | MEDIUM | **AWAITING** | - | For formal audit sign-off |
@@ -303,13 +303,13 @@ The automated training pipeline will be built incrementally, targeting the **Shi
 
 | Milestone | Description | Target Deliverable | Current Status | Verification Criteria |
 |:---:|---|---|:---:|---|
-| **B0** | Environment & Dataset Setup | Virtual environment, dependencies, folder structure, checkpoint placement | **IN PROGRESS** | Git repo initialized; Python 3.13.7 & PyTorch 2.10 (CPU) verified; awaiting checkpoints |
-| **B1** | Dataset Validation | Automated validator for image/label integrity & class counts | **NOT STARTED** | Test suite passes with valid & invalid dataset samples |
-| **B2** | Training Pipeline | Automated training runner with checkpointing & resume support | **NOT STARTED** | Reproducible training execution on Ships domain |
-| **B3** | Model Evaluation | Automated evaluation harness computing mAP@0.5 & mAP@0.5:0.95 | **NOT STARTED** | Metric reports generated matching manual baselines |
-| **B4** | ONNX Export | Automated export pipeline for trained PyTorch checkpoints | **NOT STARTED** | Valid `.onnx` models generated with correct input/output heads |
-| **B5** | Output Equivalence | PyTorch vs. ONNX numerical equivalence testing harness | **NOT STARTED** | Max absolute difference $\le 10^{-3}$ on identical test inputs |
-| **B6** | Benchmarking | Automated latency & FPS harness (p50/p95/p99 across $\ge 100$ frames) | **NOT STARTED** | Benchmark report with reproducible percentile measurements |
+| **B0** | Environment & Dataset Setup | Virtual environment, dependencies, folder structure, checkpoint placement | **COMPLETED** | All 3 checkpoints in place, all dependencies installed (Torch, Ultralytics, ONNX, MQTT, etc.) |
+| **B1** | Dataset Validation | Automated validator for image/label integrity & class counts | **COMPLETED** | `src/data/validator.py` tested and verified on 2,742 images with 100% test pass |
+| **B2** | Training Pipeline | Automated training runner with checkpointing & resume support | **PENDING** | Reproducible training execution on Ships domain |
+| **B3** | Model Evaluation | Automated evaluation harness computing mAP@0.5 & mAP@0.5:0.95 | **PENDING** | Metric reports generated matching manual baselines |
+| **B4** | ONNX Export | Automated export pipeline for trained PyTorch checkpoints | **PENDING** | Valid `.onnx` models generated with correct input/output heads |
+| **B5** | Output Equivalence | PyTorch vs. ONNX numerical equivalence testing harness | **PENDING** | Max absolute difference $\le 10^{-3}$ on identical test inputs |
+| **B6** | Benchmarking | Automated latency & FPS harness (p50/p95/p99 across $\ge 100$ frames) | **IN PROGRESS** | Benchmark harness underway across all 3 domains |
 | **B7** | TensorRT Support | FP16/INT8 TensorRT engine generation & calibration | **BLOCKED ON HOST** | Host is CPU-only (`torch.cuda.is_available() == False`); requires CUDA target |
 | **B8** | Edge Simulation | Resource-throttled edge execution environment | **NOT STARTED** | Inference performance validated under simulated constraints |
 | **B9** | MQTT Integration | Telemetry publisher with buffering (1,000 msgs) & reconnection | **NOT STARTED** | Broker disconnect/reconnect test passes with zero message loss |

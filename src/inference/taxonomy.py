@@ -88,6 +88,13 @@ class TaxonomyManager:
         global_name = self.global_taxonomy.get(global_id, f"unknown_class_{global_id}")
         return global_id, global_name
 
+    def get_local_classes(self, domain: str) -> Dict[int, str]:
+        """Retrieves all local class mappings {local_id: name} for a given domain."""
+        domain_key = domain.lower()
+        if domain_key not in self.domain_mappings:
+            raise ValueError(f"Unknown domain '{domain}'. Supported: {list(self.domain_mappings.keys())}")
+        return dict(self.domain_mappings[domain_key]["local_classes"])
+
     def get_local_name(self, domain: str, local_class_id: int) -> str:
         """Retrieves the domain-internal class label for a local class ID."""
         domain_key = domain.lower()
