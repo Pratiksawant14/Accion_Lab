@@ -1,0 +1,44 @@
+{
+  "release_id": "release_space_electronics_v1.0.0",
+  "domain": "space_electronics",
+  "architecture": "YOLO26n / YOLO11n",
+  "version": "1.0.0",
+  "input_resolution": [
+    640,
+    640
+  ],
+  "git_commit_hash": "ace8ccfa4bbb4d84d1e0a770a05f967f92865be4",
+  "pt_checkpoint": {
+    "filename": "space_electronics.pt",
+    "sha256": "50f7a4588d3f2996124cbe53f0ea7275a62db37313ce026d07d2c45b8a89645f",
+    "size_bytes": 5388549
+  },
+  "onnx_model": {
+    "filename": "space_electronics.onnx",
+    "sha256": "6082629db480fe1933dca033ffb8617eff5716c8ae337fe39a5bdd8af11de6af",
+    "size_bytes": 9747819
+  },
+  "dataset_provenance": {
+    "dataset_root": "Synthline/space electronics/space_final_dataset",
+    "total_images": 887,
+    "total_labels": 829,
+    "split_counts": {
+      "train": 590,
+      "val": 220,
+      "test": 77
+    }
+  },
+  "evaluation_metrics": {
+    "map50": 0.931,
+    "map50_95": 0.758,
+    "precision": 0.912,
+    "recall": 0.895
+  },
+  "benchmark_telemetry": {
+    "fps": 4.24,
+    "p50_inference_ms": 191.09,
+    "p95_inference_ms": 202.87,
+    "peak_ram_mb": 442.9
+  },
+  "timestamp": "2026-10-17T18:10:13.916080+00:00"
+}

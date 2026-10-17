@@ -1,0 +1,44 @@
+{
+  "release_id": "release_ships_v1.0.0",
+  "domain": "ships",
+  "architecture": "YOLO26n / YOLO11n",
+  "version": "1.0.0",
+  "input_resolution": [
+    640,
+    640
+  ],
+  "git_commit_hash": "ace8ccfa4bbb4d84d1e0a770a05f967f92865be4",
+  "pt_checkpoint": {
+    "filename": "best.pt",
+    "sha256": "304f2f9b883473f1a307f5a976ee2afd0103d4cb0112a76995d28bc650f7c448",
+    "size_bytes": 5388613
+  },
+  "onnx_model": {
+    "filename": "ships.onnx",
+    "sha256": "3d5ad5d76fd175892bfed64baf9fb87ce48e53fdbbc11a363f567ff152178bc3",
+    "size_bytes": 9747864
+  },
+  "dataset_provenance": {
+    "dataset_root": "Synthline/environmental defense/ship_final_dataset",
+    "total_images": 883,
+    "total_labels": 767,
+    "split_counts": {
+      "train": 591,
+      "val": 213,
+      "test": 79
+    }
+  },
+  "evaluation_metrics": {
+    "map50": 0.918,
+    "map50_95": 0.742,
+    "precision": 0.898,
+    "recall": 0.884
+  },
+  "benchmark_telemetry": {
+    "fps": 4.22,
+    "p50_inference_ms": 192.53,
+    "p95_inference_ms": 204.11,
+    "peak_ram_mb": 421.6
+  },
+  "timestamp": "2026-10-17T18:10:13.192766+00:00"
+}

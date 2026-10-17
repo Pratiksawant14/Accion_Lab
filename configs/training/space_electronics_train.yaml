@@ -1,0 +1,17 @@
+domain: space_electronics
+model_variant: yolo11n.pt
+data_yaml: configs/datasets/space_electronics_data.yaml
+dataset_root: Synthline/space electronics/space_final_dataset
+imgsz: 640
+epochs: 50
+batch: 16
+lr0: 0.01
+optimizer: auto
+device: cpu
+workers: 2
+patience: 15
+save_period: 10
+project: runs/train/space_electronics
+name: yolo11n_space_electronics
+resume: false
+validate_dataset_before_train: true

@@ -1,0 +1,10 @@
+# Agriculture Dataset Definition for Ultralytics YOLO
+path: Synthline/agriculture robotics/agriculture_final_dataset
+train: images/train
+val: images/val
+test: images/test
+
+nc: 2
+names:
+  0: healthy_crop
+  1: dead_crop

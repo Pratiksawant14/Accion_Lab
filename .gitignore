@@ -55,6 +55,8 @@ checkpoints/*.onnx
 runs/
 artifacts/exports/*.onnx
 artifacts/exports/*.engine
+artifacts/releases/**/*.pt
+artifacts/releases/**/*.onnx
 *.log
 
 # IDE and OS

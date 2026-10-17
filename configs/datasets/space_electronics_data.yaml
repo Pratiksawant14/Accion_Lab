@@ -1,0 +1,10 @@
+# Space Electronics Dataset Definition for Ultralytics YOLO
+path: Synthline/space electronics/space_final_dataset
+train: images/train
+val: images/val
+test: images/test
+
+nc: 2
+names:
+  0: open
+  1: short

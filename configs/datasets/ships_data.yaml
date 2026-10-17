@@ -1,0 +1,10 @@
+# Ships (Environmental Defense) Dataset Definition for Ultralytics YOLO
+path: Synthline/environmental defense/ship_final_dataset
+train: images/train
+val: images/val
+test: images/test
+
+nc: 2
+names:
+  0: cargo_ship
+  1: passenger_ship

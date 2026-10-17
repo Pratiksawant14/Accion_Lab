@@ -1,0 +1,17 @@
+domain: agriculture
+model_variant: yolov8n.pt
+data_yaml: configs/datasets/agriculture_data.yaml
+dataset_root: Synthline/agriculture robotics/agriculture_final_dataset
+imgsz: 512
+epochs: 50
+batch: 16
+lr0: 0.01
+optimizer: auto
+device: cpu
+workers: 2
+patience: 15
+save_period: 10
+project: runs/train/agriculture
+name: yolov8n_agriculture
+resume: false
+validate_dataset_before_train: true

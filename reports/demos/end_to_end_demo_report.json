@@ -1,0 +1,632 @@
+{
+  "timestamp": "2026-10-17T18:14:02.911282+00:00",
+  "summary": {
+    "total_frames_processed": 12,
+    "total_detections": 14,
+    "pseudo_boxes_flagged": 12,
+    "total_duration_sec": 4.016,
+    "effective_fps": 2.99
+  },
+  "telemetry_publisher_health": {
+    "connection_state": "DISCONNECTED",
+    "broker": "localhost:1883",
+    "topic": "telemetry/edge/team5b/inference",
+    "buffer_capacity": 1000,
+    "current_buffer_size": 12,
+    "total_published": 0,
+    "total_buffered": 12,
+    "total_dropped": 0,
+    "outage_duration_sec": 8.6,
+    "outage_warning_active": false
+  },
+  "processed_frames": [
+    {
+      "domain": "agriculture",
+      "image": "dead_crop_0004.png",
+      "inference_time_ms": 52.92550000012852,
+      "total_time_ms": 1267.6,
+      "detections_count": 2,
+      "pseudo_boxes_count": 0,
+      "detections": [
+        {
+          "box": {
+            "x_min": 0.0,
+            "y_min": 0.3852205276489258,
+            "x_max": 0.9992728233337402,
+            "y_max": 0.9986863136291504
+          },
+          "confidence": 0.9724,
+          "local_class_id": 0,
+          "local_class_name": "healthy_crop",
+          "global_class_id": 0,
+          "global_class_name": "healthy_crop"
+        },
+        {
+          "box": {
+            "x_min": 0.0,
+            "y_min": 0.00018554925918579102,
+            "x_max": 0.9996802806854248,
+            "y_max": 0.7636131644248962
+          },
+          "confidence": 0.755,
+          "local_class_id": 0,
+          "local_class_name": "healthy_crop",
+          "global_class_id": 0,
+          "global_class_name": "healthy_crop"
+        }
+      ],
+      "telemetry_payload": {
+        "frame_id": "frame_agriculture_1",
+        "timestamp": "2026-10-17T18:13:59.024830+00:00",
+        "domain": "agriculture",
+        "model_version": "1.0.0",
+        "latency_ms": 52.93,
+        "bounding_boxes": [
+          [
+            0.0,
+            0.3852,
+            0.9993,
+            0.9987
+          ],
+          [
+            0.0,
+            0.0002,
+            0.9997,
+            0.7636
+          ]
+        ],
+        "class_labels": [
+          "healthy_crop",
+          "healthy_crop"
+        ],
+        "global_class_ids": [
+          0,
+          0
+        ],
+        "confidence_scores": [
+          0.9724,
+          0.755
+        ]
+      }
+    },
+    {
+      "domain": "agriculture",
+      "image": "dead_crop_0038.png",
+      "inference_time_ms": 34.05239999847254,
+      "total_time_ms": 133.86,
+      "detections_count": 1,
+      "pseudo_boxes_count": 1,
+      "detections": [
+        {
+          "box": {
+            "x_min": 0.0,
+            "y_min": 0.0018684864044189453,
+            "x_max": 1.0,
+            "y_max": 1.0
+          },
+          "confidence": 0.9965,
+          "local_class_id": 0,
+          "local_class_name": "healthy_crop",
+          "global_class_id": 0,
+          "global_class_name": "healthy_crop"
+        }
+      ],
+      "telemetry_payload": {
+        "frame_id": "frame_agriculture_2",
+        "timestamp": "2026-10-17T18:13:59.158793+00:00",
+        "domain": "agriculture",
+        "model_version": "1.0.0",
+        "latency_ms": 34.05,
+        "bounding_boxes": [
+          [
+            0.0,
+            0.0019,
+            1.0,
+            1.0
+          ]
+        ],
+        "class_labels": [
+          "healthy_crop"
+        ],
+        "global_class_ids": [
+          0
+        ],
+        "confidence_scores": [
+          0.9965
+        ]
+      }
+    },
+    {
+      "domain": "agriculture",
+      "image": "dead_crop_0043.png",
+      "inference_time_ms": 46.09209999762243,
+      "total_time_ms": 58.31,
+      "detections_count": 1,
+      "pseudo_boxes_count": 1,
+      "detections": [
+        {
+          "box": {
+            "x_min": 0.0001240372657775879,
+            "y_min": 8.922815322875977e-05,
+            "x_max": 0.9995436072349548,
+            "y_max": 0.9998875260353088
+          },
+          "confidence": 0.9647,
+          "local_class_id": 0,
+          "local_class_name": "healthy_crop",
+          "global_class_id": 0,
+          "global_class_name": "healthy_crop"
+        }
+      ],
+      "telemetry_payload": {
+        "frame_id": "frame_agriculture_3",
+        "timestamp": "2026-10-17T18:13:59.217221+00:00",
+        "domain": "agriculture",
+        "model_version": "1.0.0",
+        "latency_ms": 46.09,
+        "bounding_boxes": [
+          [
+            0.0001,
+            0.0001,
+            0.9995,
+            0.9999
+          ]
+        ],
+        "class_labels": [
+          "healthy_crop"
+        ],
+        "global_class_ids": [
+          0
+        ],
+        "confidence_scores": [
+          0.9647
+        ]
+      }
+    },
+    {
+      "domain": "agriculture",
+      "image": "dead_crop_0063.png",
+      "inference_time_ms": 41.97730000305455,
+      "total_time_ms": 54.79,
+      "detections_count": 1,
+      "pseudo_boxes_count": 1,
+      "detections": [
+        {
+          "box": {
+            "x_min": 0.0,
+            "y_min": 0.0,
+            "x_max": 0.9999891519546509,
+            "y_max": 0.9997453093528748
+          },
+          "confidence": 0.9678,
+          "local_class_id": 0,
+          "local_class_name": "healthy_crop",
+          "global_class_id": 0,
+          "global_class_name": "healthy_crop"
+        }
+      ],
+      "telemetry_payload": {
+        "frame_id": "frame_agriculture_4",
+        "timestamp": "2026-10-17T18:13:59.272064+00:00",
+        "domain": "agriculture",
+        "model_version": "1.0.0",
+        "latency_ms": 41.98,
+        "bounding_boxes": [
+          [
+            0.0,
+            0.0,
+            1.0,
+            0.9997
+          ]
+        ],
+        "class_labels": [
+          "healthy_crop"
+        ],
+        "global_class_ids": [
+          0
+        ],
+        "confidence_scores": [
+          0.9678
+        ]
+      }
+    },
+    {
+      "domain": "ships",
+      "image": "cargo_ship_0104.png",
+      "inference_time_ms": 267.64689999981783,
+      "total_time_ms": 590.04,
+      "detections_count": 1,
+      "pseudo_boxes_count": 1,
+      "detections": [
+        {
+          "box": {
+            "x_min": 0.0,
+            "y_min": 6.580352783203125e-05,
+            "x_max": 0.999791145324707,
+            "y_max": 1.0
+          },
+          "confidence": 0.9815,
+          "local_class_id": 0,
+          "local_class_name": "cargo_ship",
+          "global_class_id": 2,
+          "global_class_name": "cargo_ship"
+        }
+      ],
+      "telemetry_payload": {
+        "frame_id": "frame_ships_1",
+        "timestamp": "2026-10-17T18:13:59.862397+00:00",
+        "domain": "ships",
+        "model_version": "1.0.0",
+        "latency_ms": 267.65,
+        "bounding_boxes": [
+          [
+            0.0,
+            0.0001,
+            0.9998,
+            1.0
+          ]
+        ],
+        "class_labels": [
+          "cargo_ship"
+        ],
+        "global_class_ids": [
+          2
+        ],
+        "confidence_scores": [
+          0.9815
+        ]
+      }
+    },
+    {
+      "domain": "ships",
+      "image": "cargo_ship_0134.png",
+      "inference_time_ms": 198.22939999721712,
+      "total_time_ms": 240.03,
+      "detections_count": 1,
+      "pseudo_boxes_count": 1,
+      "detections": [
+        {
+          "box": {
+            "x_min": 0.0,
+            "y_min": 0.0,
+            "x_max": 1.0,
+            "y_max": 1.0
+          },
+          "confidence": 0.98,
+          "local_class_id": 0,
+          "local_class_name": "cargo_ship",
+          "global_class_id": 2,
+          "global_class_name": "cargo_ship"
+        }
+      ],
+      "telemetry_payload": {
+        "frame_id": "frame_ships_2",
+        "timestamp": "2026-10-17T18:14:00.102666+00:00",
+        "domain": "ships",
+        "model_version": "1.0.0",
+        "latency_ms": 198.23,
+        "bounding_boxes": [
+          [
+            0.0,
+            0.0,
+            1.0,
+            1.0
+          ]
+        ],
+        "class_labels": [
+          "cargo_ship"
+        ],
+        "global_class_ids": [
+          2
+        ],
+        "confidence_scores": [
+          0.98
+        ]
+      }
+    },
+    {
+      "domain": "ships",
+      "image": "cargo_ship_0150.png",
+      "inference_time_ms": 185.5269999941811,
+      "total_time_ms": 222.88,
+      "detections_count": 1,
+      "pseudo_boxes_count": 1,
+      "detections": [
+        {
+          "box": {
+            "x_min": 0.00020856857008766383,
+            "y_min": 0.0,
+            "x_max": 0.9993007779121399,
+            "y_max": 1.0
+          },
+          "confidence": 0.9812,
+          "local_class_id": 0,
+          "local_class_name": "cargo_ship",
+          "global_class_id": 2,
+          "global_class_name": "cargo_ship"
+        }
+      ],
+      "telemetry_payload": {
+        "frame_id": "frame_ships_3",
+        "timestamp": "2026-10-17T18:14:00.325747+00:00",
+        "domain": "ships",
+        "model_version": "1.0.0",
+        "latency_ms": 185.53,
+        "bounding_boxes": [
+          [
+            0.0002,
+            0.0,
+            0.9993,
+            1.0
+          ]
+        ],
+        "class_labels": [
+          "cargo_ship"
+        ],
+        "global_class_ids": [
+          2
+        ],
+        "confidence_scores": [
+          0.9812
+        ]
+      }
+    },
+    {
+      "domain": "ships",
+      "image": "cargo_ship_0222.png",
+      "inference_time_ms": 192.1793000001344,
+      "total_time_ms": 232.12,
+      "detections_count": 1,
+      "pseudo_boxes_count": 1,
+      "detections": [
+        {
+          "box": {
+            "x_min": 0.0,
+            "y_min": 0.00017747879610396922,
+            "x_max": 1.0,
+            "y_max": 1.0
+          },
+          "confidence": 0.9824,
+          "local_class_id": 0,
+          "local_class_name": "cargo_ship",
+          "global_class_id": 2,
+          "global_class_name": "cargo_ship"
+        }
+      ],
+      "telemetry_payload": {
+        "frame_id": "frame_ships_4",
+        "timestamp": "2026-10-17T18:14:00.558088+00:00",
+        "domain": "ships",
+        "model_version": "1.0.0",
+        "latency_ms": 192.18,
+        "bounding_boxes": [
+          [
+            0.0,
+            0.0002,
+            1.0,
+            1.0
+          ]
+        ],
+        "class_labels": [
+          "cargo_ship"
+        ],
+        "global_class_ids": [
+          2
+        ],
+        "confidence_scores": [
+          0.9824
+        ]
+      }
+    },
+    {
+      "domain": "space_electronics",
+      "image": "open_0003.png",
+      "inference_time_ms": 212.79470000445144,
+      "total_time_ms": 540.4,
+      "detections_count": 1,
+      "pseudo_boxes_count": 1,
+      "detections": [
+        {
+          "box": {
+            "x_min": 0.0,
+            "y_min": 6.008148375258315e-06,
+            "x_max": 1.0,
+            "y_max": 1.0
+          },
+          "confidence": 0.9803,
+          "local_class_id": 1,
+          "local_class_name": "short",
+          "global_class_id": 5,
+          "global_class_name": "short"
+        }
+      ],
+      "telemetry_payload": {
+        "frame_id": "frame_space_electronics_1",
+        "timestamp": "2026-10-17T18:14:01.098721+00:00",
+        "domain": "space_electronics",
+        "model_version": "1.0.0",
+        "latency_ms": 212.79,
+        "bounding_boxes": [
+          [
+            0.0,
+            0.0,
+            1.0,
+            1.0
+          ]
+        ],
+        "class_labels": [
+          "short"
+        ],
+        "global_class_ids": [
+          5
+        ],
+        "confidence_scores": [
+          0.9803
+        ]
+      }
+    },
+    {
+      "domain": "space_electronics",
+      "image": "open_0050.png",
+      "inference_time_ms": 184.51189999905182,
+      "total_time_ms": 223.48,
+      "detections_count": 2,
+      "pseudo_boxes_count": 2,
+      "detections": [
+        {
+          "box": {
+            "x_min": 0.0018538475269451737,
+            "y_min": 8.106231689453125e-06,
+            "x_max": 0.9996427297592163,
+            "y_max": 1.0
+          },
+          "confidence": 0.6257,
+          "local_class_id": 0,
+          "local_class_name": "open",
+          "global_class_id": 4,
+          "global_class_name": "open"
+        },
+        {
+          "box": {
+            "x_min": 0.00025177001953125,
+            "y_min": 0.0,
+            "x_max": 0.9997203946113586,
+            "y_max": 1.0
+          },
+          "confidence": 0.5011,
+          "local_class_id": 1,
+          "local_class_name": "short",
+          "global_class_id": 5,
+          "global_class_name": "short"
+        }
+      ],
+      "telemetry_payload": {
+        "frame_id": "frame_space_electronics_2",
+        "timestamp": "2026-10-17T18:14:01.322442+00:00",
+        "domain": "space_electronics",
+        "model_version": "1.0.0",
+        "latency_ms": 184.51,
+        "bounding_boxes": [
+          [
+            0.0019,
+            0.0,
+            0.9996,
+            1.0
+          ],
+          [
+            0.0003,
+            0.0,
+            0.9997,
+            1.0
+          ]
+        ],
+        "class_labels": [
+          "open",
+          "short"
+        ],
+        "global_class_ids": [
+          4,
+          5
+        ],
+        "confidence_scores": [
+          0.6257,
+          0.5011
+        ]
+      }
+    },
+    {
+      "domain": "space_electronics",
+      "image": "open_0137.png",
+      "inference_time_ms": 178.93699999694945,
+      "total_time_ms": 218.36,
+      "detections_count": 1,
+      "pseudo_boxes_count": 1,
+      "detections": [
+        {
+          "box": {
+            "x_min": 0.000529384589754045,
+            "y_min": 0.00019207000150345266,
+            "x_max": 0.9999843835830688,
+            "y_max": 1.0
+          },
+          "confidence": 0.9619,
+          "local_class_id": 0,
+          "local_class_name": "open",
+          "global_class_id": 4,
+          "global_class_name": "open"
+        }
+      ],
+      "telemetry_payload": {
+        "frame_id": "frame_space_electronics_3",
+        "timestamp": "2026-10-17T18:14:01.541077+00:00",
+        "domain": "space_electronics",
+        "model_version": "1.0.0",
+        "latency_ms": 178.94,
+        "bounding_boxes": [
+          [
+            0.0005,
+            0.0002,
+            1.0,
+            1.0
+          ]
+        ],
+        "class_labels": [
+          "open"
+        ],
+        "global_class_ids": [
+          4
+        ],
+        "confidence_scores": [
+          0.9619
+        ]
+      }
+    },
+    {
+      "domain": "space_electronics",
+      "image": "open_0185.png",
+      "inference_time_ms": 190.27280000591418,
+      "total_time_ms": 231.25,
+      "detections_count": 1,
+      "pseudo_boxes_count": 1,
+      "detections": [
+        {
+          "box": {
+            "x_min": 0.00317211146466434,
+            "y_min": 0.00037670135498046875,
+            "x_max": 0.999462902545929,
+            "y_max": 1.0
+          },
+          "confidence": 0.9356,
+          "local_class_id": 1,
+          "local_class_name": "short",
+          "global_class_id": 5,
+          "global_class_name": "short"
+        }
+      ],
+      "telemetry_payload": {
+        "frame_id": "frame_space_electronics_4",
+        "timestamp": "2026-10-17T18:14:01.772594+00:00",
+        "domain": "space_electronics",
+        "model_version": "1.0.0",
+        "latency_ms": 190.27,
+        "bounding_boxes": [
+          [
+            0.0032,
+            0.0004,
+            0.9995,
+            1.0
+          ]
+        ],
+        "class_labels": [
+          "short"
+        ],
+        "global_class_ids": [
+          5
+        ],
+        "confidence_scores": [
+          0.9356
+        ]
+      }
+    }
+  ]
+}
