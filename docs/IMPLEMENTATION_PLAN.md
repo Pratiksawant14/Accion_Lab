@@ -57,9 +57,9 @@ Team 5B is responsible for bridging machine learning model training and edge har
 | **B6** | Performance Benchmarking Harness | REQ-11 | **COMPLETED** | $\ge 100$ frames per domain, FPS, p50/p95/p99 latency percentiles (`reports/benchmarks/`) |
 | **B4** | ONNX Export Pipeline | REQ-05 | **COMPLETED** | Automated export script converting `.pt` checkpoints to `.onnx` (`artifacts/exports/`) |
 | **B5** | Output Equivalence Testing | REQ-05 | **COMPLETED** | Max absolute difference $\le 10^{-3}$ confirmed across all 3 models (`reports/exports/`) |
-| **B9** | Resilient MQTT Telemetry Client | REQ-09, REQ-10 | **IN PROGRESS** | 1,000-msg circular buffer, exp backoff reconnection, 60s failure alert |
-| **B8** | Edge Resource Constraint Simulation | REQ-08 | **PENDING** | Throttled CPU execution and memory budget enforcement |
-| **B2** | Automated Training Pipeline Runner | REQ-01, REQ-03 | **PENDING** | YAML config-driven YOLO trainer supporting Nano/Small/Medium |
+| **B9** | Resilient MQTT Telemetry Client | REQ-09, REQ-10 | **COMPLETED** | 1,000-msg circular buffer, exp backoff reconnection, 60s failure alert (`src/telemetry/`) |
+| **B8** | Edge Resource Constraint Simulation | REQ-08 | **COMPLETED** | Throttled CPU execution and memory budget enforcement (`src/simulation/`) |
+| **B2** | Automated Training Pipeline Runner | REQ-01, REQ-03 | **IN PROGRESS** | YAML config-driven YOLO trainer supporting Nano/Small/Medium |
 | **B3** | Evaluation & Resumption Suite | REQ-03, REQ-11 | **PENDING** | Seamless resume from `last.pt`, automated mAP@0.5 calculation |
 | **B10** | Model Packaging & Registry Manifest | REQ-12 | **PENDING** | Package manifest with SHA-256 hashes, Git commit, hyperparams |
 | **B11** | End-to-End Integrated Live Demo | REQ-13 | **PENDING** | Live multi-domain streaming demo to Team 5C telemetry consumer |
@@ -126,3 +126,4 @@ Team 5B is responsible for bridging machine learning model training and edge har
 | 2026-10-17 | B1 (REQ-02) | Built `src/data/validator.py`, verified all 2,742 images & labels, wrote unit tests | 13/13 tests passed (100%), reports saved |
 | 2026-10-17 | B6 (REQ-11) | Built benchmark harness, executed 100 frames/domain (300 total), profiled FPS/latency | 16/16 tests passed; reports saved in `reports/benchmarks/` |
 | 2026-10-17 | B4, B5 (REQ-05) | Built ONNX exporter & numerical equivalence validator; exported all 3 models | 19/19 tests passed; max abs error <= 6.4e-4 <= 1e-3 (100% PASS) |
+| 2026-10-17 | B9, B8 (REQ-09,10,08) | Built resilient MQTT publisher (1k buffer, exp backoff, 60s alert) & edge limiter | 26/26 tests passed (100%), chaos buffer test verified |
