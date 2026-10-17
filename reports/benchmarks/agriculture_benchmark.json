@@ -1,0 +1,56 @@
+{
+  "domain": "agriculture",
+  "model_name": "agriculture_yolov8n",
+  "model_version": "1.0.0",
+  "device": "cpu",
+  "total_frames_evaluated": 100,
+  "warmup_frames": 5,
+  "total_duration_sec": 18.566,
+  "fps": 5.39,
+  "preprocess_latencies": {
+    "mean": 24.56,
+    "min": 17.96,
+    "p50": 24.81,
+    "p90": 26.62,
+    "p95": 27.49,
+    "p99": 31.61,
+    "max": 33.2,
+    "std": 2.3
+  },
+  "inference_latencies": {
+    "mean": 152.19,
+    "min": 89.7,
+    "p50": 147.54,
+    "p90": 166.85,
+    "p95": 179.39,
+    "p99": 254.6,
+    "max": 329.07,
+    "std": 26.65
+  },
+  "postprocess_latencies": {
+    "mean": 0.12,
+    "min": 0.06,
+    "p50": 0.12,
+    "p90": 0.15,
+    "p95": 0.16,
+    "p99": 0.26,
+    "max": 0.31,
+    "std": 0.03
+  },
+  "total_latencies": {
+    "mean": 185.54,
+    "min": 118.5,
+    "p50": 181.37,
+    "p90": 199.79,
+    "p95": 215.66,
+    "p99": 305.43,
+    "max": 362.12,
+    "std": 28.03
+  },
+  "initial_rss_mb": 263.38,
+  "peak_rss_mb": 399.44,
+  "final_rss_mb": 398.16,
+  "total_detections": 109,
+  "pseudo_boxes": 105,
+  "target_50ms_met": false
+}

@@ -1,0 +1,56 @@
+{
+  "domain": "ships",
+  "model_name": "ships_yolo26n",
+  "model_version": "1.0.0",
+  "device": "cpu",
+  "total_frames_evaluated": 100,
+  "warmup_frames": 5,
+  "total_duration_sec": 23.681,
+  "fps": 4.22,
+  "preprocess_latencies": {
+    "mean": 23.71,
+    "min": 14.36,
+    "p50": 24.13,
+    "p90": 26.76,
+    "p95": 27.58,
+    "p99": 28.26,
+    "max": 37.31,
+    "std": 3.11
+  },
+  "inference_latencies": {
+    "mean": 198.06,
+    "min": 146.08,
+    "p50": 192.53,
+    "p90": 219.45,
+    "p95": 231.27,
+    "p99": 337.69,
+    "max": 380.69,
+    "std": 30.47
+  },
+  "postprocess_latencies": {
+    "mean": 0.12,
+    "min": 0.07,
+    "p50": 0.12,
+    "p90": 0.14,
+    "p95": 0.17,
+    "p99": 0.19,
+    "max": 0.24,
+    "std": 0.02
+  },
+  "total_latencies": {
+    "mean": 236.69,
+    "min": 174.63,
+    "p50": 230.47,
+    "p90": 260.37,
+    "p95": 270.38,
+    "p99": 383.02,
+    "max": 424.21,
+    "std": 32.53
+  },
+  "initial_rss_mb": 398.9,
+  "peak_rss_mb": 421.63,
+  "final_rss_mb": 411.5,
+  "total_detections": 100,
+  "pseudo_boxes": 100,
+  "target_50ms_met": false
+}

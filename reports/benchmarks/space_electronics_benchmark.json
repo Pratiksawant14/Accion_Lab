@@ -1,0 +1,56 @@
+{
+  "domain": "space_electronics",
+  "model_name": "space_electronics_yolo26n",
+  "model_version": "1.0.0",
+  "device": "cpu",
+  "total_frames_evaluated": 100,
+  "warmup_frames": 5,
+  "total_duration_sec": 23.608,
+  "fps": 4.24,
+  "preprocess_latencies": {
+    "mean": 25.5,
+    "min": 17.45,
+    "p50": 25.14,
+    "p90": 27.71,
+    "p95": 28.52,
+    "p99": 41.64,
+    "max": 47.77,
+    "std": 3.54
+  },
+  "inference_latencies": {
+    "mean": 196.09,
+    "min": 152.52,
+    "p50": 191.09,
+    "p90": 226.17,
+    "p95": 240.95,
+    "p99": 275.02,
+    "max": 347.32,
+    "std": 25.72
+  },
+  "postprocess_latencies": {
+    "mean": 0.13,
+    "min": 0.06,
+    "p50": 0.13,
+    "p90": 0.16,
+    "p95": 0.17,
+    "p99": 0.25,
+    "max": 0.34,
+    "std": 0.04
+  },
+  "total_latencies": {
+    "mean": 235.97,
+    "min": 184.01,
+    "p50": 230.26,
+    "p90": 267.57,
+    "p95": 287.19,
+    "p99": 322.91,
+    "max": 423.24,
+    "std": 29.54
+  },
+  "initial_rss_mb": 411.52,
+  "peak_rss_mb": 442.94,
+  "final_rss_mb": 438.3,
+  "total_detections": 112,
+  "pseudo_boxes": 112,
+  "target_50ms_met": false
+}

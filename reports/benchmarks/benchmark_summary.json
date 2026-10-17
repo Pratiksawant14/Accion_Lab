@@ -1,0 +1,170 @@
+[
+  {
+    "domain": "agriculture",
+    "model_name": "agriculture_yolov8n",
+    "model_version": "1.0.0",
+    "device": "cpu",
+    "total_frames_evaluated": 100,
+    "warmup_frames": 5,
+    "total_duration_sec": 18.566,
+    "fps": 5.39,
+    "preprocess_latencies": {
+      "mean": 24.56,
+      "min": 17.96,
+      "p50": 24.81,
+      "p90": 26.62,
+      "p95": 27.49,
+      "p99": 31.61,
+      "max": 33.2,
+      "std": 2.3
+    },
+    "inference_latencies": {
+      "mean": 152.19,
+      "min": 89.7,
+      "p50": 147.54,
+      "p90": 166.85,
+      "p95": 179.39,
+      "p99": 254.6,
+      "max": 329.07,
+      "std": 26.65
+    },
+    "postprocess_latencies": {
+      "mean": 0.12,
+      "min": 0.06,
+      "p50": 0.12,
+      "p90": 0.15,
+      "p95": 0.16,
+      "p99": 0.26,
+      "max": 0.31,
+      "std": 0.03
+    },
+    "total_latencies": {
+      "mean": 185.54,
+      "min": 118.5,
+      "p50": 181.37,
+      "p90": 199.79,
+      "p95": 215.66,
+      "p99": 305.43,
+      "max": 362.12,
+      "std": 28.03
+    },
+    "initial_rss_mb": 263.38,
+    "peak_rss_mb": 399.44,
+    "final_rss_mb": 398.16,
+    "total_detections": 109,
+    "pseudo_boxes": 105,
+    "target_50ms_met": false
+  },
+  {
+    "domain": "ships",
+    "model_name": "ships_yolo26n",
+    "model_version": "1.0.0",
+    "device": "cpu",
+    "total_frames_evaluated": 100,
+    "warmup_frames": 5,
+    "total_duration_sec": 23.681,
+    "fps": 4.22,
+    "preprocess_latencies": {
+      "mean": 23.71,
+      "min": 14.36,
+      "p50": 24.13,
+      "p90": 26.76,
+      "p95": 27.58,
+      "p99": 28.26,
+      "max": 37.31,
+      "std": 3.11
+    },
+    "inference_latencies": {
+      "mean": 198.06,
+      "min": 146.08,
+      "p50": 192.53,
+      "p90": 219.45,
+      "p95": 231.27,
+      "p99": 337.69,
+      "max": 380.69,
+      "std": 30.47
+    },
+    "postprocess_latencies": {
+      "mean": 0.12,
+      "min": 0.07,
+      "p50": 0.12,
+      "p90": 0.14,
+      "p95": 0.17,
+      "p99": 0.19,
+      "max": 0.24,
+      "std": 0.02
+    },
+    "total_latencies": {
+      "mean": 236.69,
+      "min": 174.63,
+      "p50": 230.47,
+      "p90": 260.37,
+      "p95": 270.38,
+      "p99": 383.02,
+      "max": 424.21,
+      "std": 32.53
+    },
+    "initial_rss_mb": 398.9,
+    "peak_rss_mb": 421.63,
+    "final_rss_mb": 411.5,
+    "total_detections": 100,
+    "pseudo_boxes": 100,
+    "target_50ms_met": false
+  },
+  {
+    "domain": "space_electronics",
+    "model_name": "space_electronics_yolo26n",
+    "model_version": "1.0.0",
+    "device": "cpu",
+    "total_frames_evaluated": 100,
+    "warmup_frames": 5,
+    "total_duration_sec": 23.608,
+    "fps": 4.24,
+    "preprocess_latencies": {
+      "mean": 25.5,
+      "min": 17.45,
+      "p50": 25.14,
+      "p90": 27.71,
+      "p95": 28.52,
+      "p99": 41.64,
+      "max": 47.77,
+      "std": 3.54
+    },
+    "inference_latencies": {
+      "mean": 196.09,
+      "min": 152.52,
+      "p50": 191.09,
+      "p90": 226.17,
+      "p95": 240.95,
+      "p99": 275.02,
+      "max": 347.32,
+      "std": 25.72
+    },
+    "postprocess_latencies": {
+      "mean": 0.13,
+      "min": 0.06,
+      "p50": 0.13,
+      "p90": 0.16,
+      "p95": 0.17,
+      "p99": 0.25,
+      "max": 0.34,
+      "std": 0.04
+    },
+    "total_latencies": {
+      "mean": 235.97,
+      "min": 184.01,
+      "p50": 230.26,
+      "p90": 267.57,
+      "p95": 287.19,
+      "p99": 322.91,
+      "max": 423.24,
+      "std": 29.54
+    },
+    "initial_rss_mb": 411.52,
+    "peak_rss_mb": 442.94,
+    "final_rss_mb": 438.3,
+    "total_detections": 112,
+    "pseudo_boxes": 112,
+    "target_50ms_met": false
+  }
+]
