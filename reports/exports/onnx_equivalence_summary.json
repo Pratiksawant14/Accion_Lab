@@ -1,0 +1,740 @@
+[
+  {
+    "domain": "agriculture",
+    "checkpoint_path": "D:\\Accion_Lab\\checkpoints\\Agriculture_bestweight.pt",
+    "onnx_path": "D:\\Accion_Lab\\artifacts\\exports\\agriculture.onnx",
+    "input_resolution": [
+      512,
+      512
+    ],
+    "tolerance": 0.001,
+    "num_samples_tested": 10,
+    "max_absolute_error_overall": 0.0003662109375,
+    "mean_absolute_error_overall": 8.252605402958579e-06,
+    "all_passed": true,
+    "samples": [
+      {
+        "sample_index": 1,
+        "source_image": "D:\\Accion_Lab\\Synthline\\agriculture robotics\\agriculture_final_dataset\\images\\val\\dead_crop_0059.png",
+        "input_shape": [
+          1,
+          3,
+          512,
+          512
+        ],
+        "pytorch_output_shape": [
+          1,
+          6,
+          5376
+        ],
+        "onnx_output_shape": [
+          1,
+          6,
+          5376
+        ],
+        "max_absolute_error": 0.000244140625,
+        "mean_absolute_error": 8.422430255450308e-06,
+        "passed": true
+      },
+      {
+        "sample_index": 2,
+        "source_image": "D:\\Accion_Lab\\Synthline\\agriculture robotics\\agriculture_final_dataset\\images\\val\\dead_crop_0064.png",
+        "input_shape": [
+          1,
+          3,
+          512,
+          512
+        ],
+        "pytorch_output_shape": [
+          1,
+          6,
+          5376
+        ],
+        "onnx_output_shape": [
+          1,
+          6,
+          5376
+        ],
+        "max_absolute_error": 0.000244140625,
+        "mean_absolute_error": 8.052048542595003e-06,
+        "passed": true
+      },
+      {
+        "sample_index": 3,
+        "source_image": "D:\\Accion_Lab\\Synthline\\agriculture robotics\\agriculture_final_dataset\\images\\val\\dead_crop_0078.png",
+        "input_shape": [
+          1,
+          3,
+          512,
+          512
+        ],
+        "pytorch_output_shape": [
+          1,
+          6,
+          5376
+        ],
+        "onnx_output_shape": [
+          1,
+          6,
+          5376
+        ],
+        "max_absolute_error": 0.000335693359375,
+        "mean_absolute_error": 8.369484021386597e-06,
+        "passed": true
+      },
+      {
+        "sample_index": 4,
+        "source_image": "D:\\Accion_Lab\\Synthline\\agriculture robotics\\agriculture_final_dataset\\images\\val\\dead_crop_0094.png",
+        "input_shape": [
+          1,
+          3,
+          512,
+          512
+        ],
+        "pytorch_output_shape": [
+          1,
+          6,
+          5376
+        ],
+        "onnx_output_shape": [
+          1,
+          6,
+          5376
+        ],
+        "max_absolute_error": 0.0003662109375,
+        "mean_absolute_error": 8.478999916405883e-06,
+        "passed": true
+      },
+      {
+        "sample_index": 5,
+        "source_image": "D:\\Accion_Lab\\Synthline\\agriculture robotics\\agriculture_final_dataset\\images\\val\\dead_crop_0109.png",
+        "input_shape": [
+          1,
+          3,
+          512,
+          512
+        ],
+        "pytorch_output_shape": [
+          1,
+          6,
+          5376
+        ],
+        "onnx_output_shape": [
+          1,
+          6,
+          5376
+        ],
+        "max_absolute_error": 0.000335693359375,
+        "mean_absolute_error": 8.238615919253789e-06,
+        "passed": true
+      },
+      {
+        "sample_index": 6,
+        "source_image": null,
+        "input_shape": [
+          1,
+          3,
+          512,
+          512
+        ],
+        "pytorch_output_shape": [
+          1,
+          6,
+          5376
+        ],
+        "onnx_output_shape": [
+          1,
+          6,
+          5376
+        ],
+        "max_absolute_error": 0.00030517578125,
+        "mean_absolute_error": 8.195389455067925e-06,
+        "passed": true
+      },
+      {
+        "sample_index": 7,
+        "source_image": null,
+        "input_shape": [
+          1,
+          3,
+          512,
+          512
+        ],
+        "pytorch_output_shape": [
+          1,
+          6,
+          5376
+        ],
+        "onnx_output_shape": [
+          1,
+          6,
+          5376
+        ],
+        "max_absolute_error": 0.000274658203125,
+        "mean_absolute_error": 8.107846042548772e-06,
+        "passed": true
+      },
+      {
+        "sample_index": 8,
+        "source_image": null,
+        "input_shape": [
+          1,
+          3,
+          512,
+          512
+        ],
+        "pytorch_output_shape": [
+          1,
+          6,
+          5376
+        ],
+        "onnx_output_shape": [
+          1,
+          6,
+          5376
+        ],
+        "max_absolute_error": 0.000244140625,
+        "mean_absolute_error": 8.097845238808077e-06,
+        "passed": true
+      },
+      {
+        "sample_index": 9,
+        "source_image": null,
+        "input_shape": [
+          1,
+          3,
+          512,
+          512
+        ],
+        "pytorch_output_shape": [
+          1,
+          6,
+          5376
+        ],
+        "onnx_output_shape": [
+          1,
+          6,
+          5376
+        ],
+        "max_absolute_error": 0.0003662109375,
+        "mean_absolute_error": 8.296659871120937e-06,
+        "passed": true
+      },
+      {
+        "sample_index": 10,
+        "source_image": null,
+        "input_shape": [
+          1,
+          3,
+          512,
+          512
+        ],
+        "pytorch_output_shape": [
+          1,
+          6,
+          5376
+        ],
+        "onnx_output_shape": [
+          1,
+          6,
+          5376
+        ],
+        "max_absolute_error": 0.000335693359375,
+        "mean_absolute_error": 8.266734766948503e-06,
+        "passed": true
+      }
+    ]
+  },
+  {
+    "domain": "ships",
+    "checkpoint_path": "D:\\Accion_Lab\\checkpoints\\best.pt",
+    "onnx_path": "D:\\Accion_Lab\\artifacts\\exports\\ships.onnx",
+    "input_resolution": [
+      640,
+      640
+    ],
+    "tolerance": 0.001,
+    "num_samples_tested": 10,
+    "max_absolute_error_overall": 0.000640869140625,
+    "mean_absolute_error_overall": 1.3221545214037177e-05,
+    "all_passed": true,
+    "samples": [
+      {
+        "sample_index": 1,
+        "source_image": "D:\\Accion_Lab\\Synthline\\environmental defense\\ship_final_dataset\\images\\val\\cargo_ship_0041.png",
+        "input_shape": [
+          1,
+          3,
+          640,
+          640
+        ],
+        "pytorch_output_shape": [
+          1,
+          6,
+          8400
+        ],
+        "onnx_output_shape": [
+          1,
+          6,
+          8400
+        ],
+        "max_absolute_error": 0.00054931640625,
+        "mean_absolute_error": 1.3197409316489939e-05,
+        "passed": true
+      },
+      {
+        "sample_index": 2,
+        "source_image": "D:\\Accion_Lab\\Synthline\\environmental defense\\ship_final_dataset\\images\\val\\cargo_ship_0048.png",
+        "input_shape": [
+          1,
+          3,
+          640,
+          640
+        ],
+        "pytorch_output_shape": [
+          1,
+          6,
+          8400
+        ],
+        "onnx_output_shape": [
+          1,
+          6,
+          8400
+        ],
+        "max_absolute_error": 0.00054931640625,
+        "mean_absolute_error": 1.4264933270169422e-05,
+        "passed": true
+      },
+      {
+        "sample_index": 3,
+        "source_image": "D:\\Accion_Lab\\Synthline\\environmental defense\\ship_final_dataset\\images\\val\\cargo_ship_0087.png",
+        "input_shape": [
+          1,
+          3,
+          640,
+          640
+        ],
+        "pytorch_output_shape": [
+          1,
+          6,
+          8400
+        ],
+        "onnx_output_shape": [
+          1,
+          6,
+          8400
+        ],
+        "max_absolute_error": 0.00054931640625,
+        "mean_absolute_error": 1.3669910913449712e-05,
+        "passed": true
+      },
+      {
+        "sample_index": 4,
+        "source_image": "D:\\Accion_Lab\\Synthline\\environmental defense\\ship_final_dataset\\images\\val\\cargo_ship_0091.png",
+        "input_shape": [
+          1,
+          3,
+          640,
+          640
+        ],
+        "pytorch_output_shape": [
+          1,
+          6,
+          8400
+        ],
+        "onnx_output_shape": [
+          1,
+          6,
+          8400
+        ],
+        "max_absolute_error": 0.00048828125,
+        "mean_absolute_error": 1.4334758816403337e-05,
+        "passed": true
+      },
+      {
+        "sample_index": 5,
+        "source_image": "D:\\Accion_Lab\\Synthline\\environmental defense\\ship_final_dataset\\images\\val\\cargo_ship_0105.png",
+        "input_shape": [
+          1,
+          3,
+          640,
+          640
+        ],
+        "pytorch_output_shape": [
+          1,
+          6,
+          8400
+        ],
+        "onnx_output_shape": [
+          1,
+          6,
+          8400
+        ],
+        "max_absolute_error": 0.00048828125,
+        "mean_absolute_error": 1.2808710380340926e-05,
+        "passed": true
+      },
+      {
+        "sample_index": 6,
+        "source_image": null,
+        "input_shape": [
+          1,
+          3,
+          640,
+          640
+        ],
+        "pytorch_output_shape": [
+          1,
+          6,
+          8400
+        ],
+        "onnx_output_shape": [
+          1,
+          6,
+          8400
+        ],
+        "max_absolute_error": 0.00054931640625,
+        "mean_absolute_error": 1.2796756891475525e-05,
+        "passed": true
+      },
+      {
+        "sample_index": 7,
+        "source_image": null,
+        "input_shape": [
+          1,
+          3,
+          640,
+          640
+        ],
+        "pytorch_output_shape": [
+          1,
+          6,
+          8400
+        ],
+        "onnx_output_shape": [
+          1,
+          6,
+          8400
+        ],
+        "max_absolute_error": 0.000640869140625,
+        "mean_absolute_error": 1.2771097317454405e-05,
+        "passed": true
+      },
+      {
+        "sample_index": 8,
+        "source_image": null,
+        "input_shape": [
+          1,
+          3,
+          640,
+          640
+        ],
+        "pytorch_output_shape": [
+          1,
+          6,
+          8400
+        ],
+        "onnx_output_shape": [
+          1,
+          6,
+          8400
+        ],
+        "max_absolute_error": 0.00042724609375,
+        "mean_absolute_error": 1.2892907761852257e-05,
+        "passed": true
+      },
+      {
+        "sample_index": 9,
+        "source_image": null,
+        "input_shape": [
+          1,
+          3,
+          640,
+          640
+        ],
+        "pytorch_output_shape": [
+          1,
+          6,
+          8400
+        ],
+        "onnx_output_shape": [
+          1,
+          6,
+          8400
+        ],
+        "max_absolute_error": 0.00042724609375,
+        "mean_absolute_error": 1.2804103789676446e-05,
+        "passed": true
+      },
+      {
+        "sample_index": 10,
+        "source_image": null,
+        "input_shape": [
+          1,
+          3,
+          640,
+          640
+        ],
+        "pytorch_output_shape": [
+          1,
+          6,
+          8400
+        ],
+        "onnx_output_shape": [
+          1,
+          6,
+          8400
+        ],
+        "max_absolute_error": 0.000457763671875,
+        "mean_absolute_error": 1.2674863683059812e-05,
+        "passed": true
+      }
+    ]
+  },
+  {
+    "domain": "space_electronics",
+    "checkpoint_path": "D:\\Accion_Lab\\checkpoints\\space_electronics.pt",
+    "onnx_path": "D:\\Accion_Lab\\artifacts\\exports\\space_electronics.onnx",
+    "input_resolution": [
+      640,
+      640
+    ],
+    "tolerance": 0.001,
+    "num_samples_tested": 10,
+    "max_absolute_error_overall": 0.000518798828125,
+    "mean_absolute_error_overall": 1.3031217622483383e-05,
+    "all_passed": true,
+    "samples": [
+      {
+        "sample_index": 1,
+        "source_image": "D:\\Accion_Lab\\Synthline\\space electronics\\space_final_dataset\\images\\val\\open_0060.png",
+        "input_shape": [
+          1,
+          3,
+          640,
+          640
+        ],
+        "pytorch_output_shape": [
+          1,
+          6,
+          8400
+        ],
+        "onnx_output_shape": [
+          1,
+          6,
+          8400
+        ],
+        "max_absolute_error": 0.00042724609375,
+        "mean_absolute_error": 1.4187907254381571e-05,
+        "passed": true
+      },
+      {
+        "sample_index": 2,
+        "source_image": "D:\\Accion_Lab\\Synthline\\space electronics\\space_final_dataset\\images\\val\\open_0100.png",
+        "input_shape": [
+          1,
+          3,
+          640,
+          640
+        ],
+        "pytorch_output_shape": [
+          1,
+          6,
+          8400
+        ],
+        "onnx_output_shape": [
+          1,
+          6,
+          8400
+        ],
+        "max_absolute_error": 0.00042724609375,
+        "mean_absolute_error": 1.2205611710669473e-05,
+        "passed": true
+      },
+      {
+        "sample_index": 3,
+        "source_image": "D:\\Accion_Lab\\Synthline\\space electronics\\space_final_dataset\\images\\val\\open_0106.png",
+        "input_shape": [
+          1,
+          3,
+          640,
+          640
+        ],
+        "pytorch_output_shape": [
+          1,
+          6,
+          8400
+        ],
+        "onnx_output_shape": [
+          1,
+          6,
+          8400
+        ],
+        "max_absolute_error": 0.000457763671875,
+        "mean_absolute_error": 1.3311328984855209e-05,
+        "passed": true
+      },
+      {
+        "sample_index": 4,
+        "source_image": "D:\\Accion_Lab\\Synthline\\space electronics\\space_final_dataset\\images\\val\\open_0110.png",
+        "input_shape": [
+          1,
+          3,
+          640,
+          640
+        ],
+        "pytorch_output_shape": [
+          1,
+          6,
+          8400
+        ],
+        "onnx_output_shape": [
+          1,
+          6,
+          8400
+        ],
+        "max_absolute_error": 0.000518798828125,
+        "mean_absolute_error": 1.4575020941265393e-05,
+        "passed": true
+      },
+      {
+        "sample_index": 5,
+        "source_image": "D:\\Accion_Lab\\Synthline\\space electronics\\space_final_dataset\\images\\val\\open_0116.png",
+        "input_shape": [
+          1,
+          3,
+          640,
+          640
+        ],
+        "pytorch_output_shape": [
+          1,
+          6,
+          8400
+        ],
+        "onnx_output_shape": [
+          1,
+          6,
+          8400
+        ],
+        "max_absolute_error": 0.000457763671875,
+        "mean_absolute_error": 1.3006211702304427e-05,
+        "passed": true
+      },
+      {
+        "sample_index": 6,
+        "source_image": null,
+        "input_shape": [
+          1,
+          3,
+          640,
+          640
+        ],
+        "pytorch_output_shape": [
+          1,
+          6,
+          8400
+        ],
+        "onnx_output_shape": [
+          1,
+          6,
+          8400
+        ],
+        "max_absolute_error": 0.00048828125,
+        "mean_absolute_error": 1.2611973033926915e-05,
+        "passed": true
+      },
+      {
+        "sample_index": 7,
+        "source_image": null,
+        "input_shape": [
+          1,
+          3,
+          640,
+          640
+        ],
+        "pytorch_output_shape": [
+          1,
+          6,
+          8400
+        ],
+        "onnx_output_shape": [
+          1,
+          6,
+          8400
+        ],
+        "max_absolute_error": 0.000457763671875,
+        "mean_absolute_error": 1.2438311387086287e-05,
+        "passed": true
+      },
+      {
+        "sample_index": 8,
+        "source_image": null,
+        "input_shape": [
+          1,
+          3,
+          640,
+          640
+        ],
+        "pytorch_output_shape": [
+          1,
+          6,
+          8400
+        ],
+        "onnx_output_shape": [
+          1,
+          6,
+          8400
+        ],
+        "max_absolute_error": 0.000457763671875,
+        "mean_absolute_error": 1.2713247087958734e-05,
+        "passed": true
+      },
+      {
+        "sample_index": 9,
+        "source_image": null,
+        "input_shape": [
+          1,
+          3,
+          640,
+          640
+        ],
+        "pytorch_output_shape": [
+          1,
+          6,
+          8400
+        ],
+        "onnx_output_shape": [
+          1,
+          6,
+          8400
+        ],
+        "max_absolute_error": 0.000518798828125,
+        "mean_absolute_error": 1.2792485904355999e-05,
+        "passed": true
+      },
+      {
+        "sample_index": 10,
+        "source_image": null,
+        "input_shape": [
+          1,
+          3,
+          640,
+          640
+        ],
+        "pytorch_output_shape": [
+          1,
+          6,
+          8400
+        ],
+        "onnx_output_shape": [
+          1,
+          6,
+          8400
+        ],
+        "max_absolute_error": 0.0004425048828125,
+        "mean_absolute_error": 1.2470078218029812e-05,
+        "passed": true
+      }
+    ]
+  }
+]

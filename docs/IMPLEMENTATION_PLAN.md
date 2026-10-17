@@ -55,9 +55,9 @@ Team 5B is responsible for bridging machine learning model training and edge har
 | **ADR-001** | Unified Inference Orchestrator | REQ-01, REQ-04 | **COMPLETED** | Adapters + Router dispatching live inference without cross-domain pollution |
 | **B1** | Automated Dataset Pre-Flight Validator | REQ-02 | **COMPLETED** | Image integrity, bounds $[0, 1]$, class consistency, pseudo-box detection |
 | **B6** | Performance Benchmarking Harness | REQ-11 | **COMPLETED** | $\ge 100$ frames per domain, FPS, p50/p95/p99 latency percentiles (`reports/benchmarks/`) |
-| **B4** | ONNX Export Pipeline | REQ-05 | **IN PROGRESS** | Automated export script converting `.pt` checkpoints to `.onnx` |
-| **B5** | Output Equivalence Testing | REQ-05 | **PENDING** | Max absolute difference $\le 10^{-3}$ between PyTorch and ONNX Runtime |
-| **B9** | Resilient MQTT Telemetry Client | REQ-09, REQ-10 | **PENDING** | 1,000-msg circular buffer, exp backoff reconnection, 60s failure alert |
+| **B4** | ONNX Export Pipeline | REQ-05 | **COMPLETED** | Automated export script converting `.pt` checkpoints to `.onnx` (`artifacts/exports/`) |
+| **B5** | Output Equivalence Testing | REQ-05 | **COMPLETED** | Max absolute difference $\le 10^{-3}$ confirmed across all 3 models (`reports/exports/`) |
+| **B9** | Resilient MQTT Telemetry Client | REQ-09, REQ-10 | **IN PROGRESS** | 1,000-msg circular buffer, exp backoff reconnection, 60s failure alert |
 | **B8** | Edge Resource Constraint Simulation | REQ-08 | **PENDING** | Throttled CPU execution and memory budget enforcement |
 | **B2** | Automated Training Pipeline Runner | REQ-01, REQ-03 | **PENDING** | YAML config-driven YOLO trainer supporting Nano/Small/Medium |
 | **B3** | Evaluation & Resumption Suite | REQ-03, REQ-11 | **PENDING** | Seamless resume from `last.pt`, automated mAP@0.5 calculation |
@@ -125,3 +125,4 @@ Team 5B is responsible for bridging machine learning model training and edge har
 | 2026-10-17 | Dependencies | Installed `onnx>=1.14.0` and `paho-mqtt<2.0.0` | All dependencies verified OK |
 | 2026-10-17 | B1 (REQ-02) | Built `src/data/validator.py`, verified all 2,742 images & labels, wrote unit tests | 13/13 tests passed (100%), reports saved |
 | 2026-10-17 | B6 (REQ-11) | Built benchmark harness, executed 100 frames/domain (300 total), profiled FPS/latency | 16/16 tests passed; reports saved in `reports/benchmarks/` |
+| 2026-10-17 | B4, B5 (REQ-05) | Built ONNX exporter & numerical equivalence validator; exported all 3 models | 19/19 tests passed; max abs error <= 6.4e-4 <= 1e-3 (100% PASS) |

@@ -1,0 +1,68 @@
+[
+  {
+    "domain": "agriculture",
+    "checkpoint_path": "D:\\Accion_Lab\\checkpoints\\Agriculture_bestweight.pt",
+    "onnx_path": "D:\\Accion_Lab\\artifacts\\exports\\agriculture.onnx",
+    "input_resolution": [
+      512,
+      512
+    ],
+    "opset": 12,
+    "dynamic_axes": false,
+    "file_size_bytes": 12179013,
+    "file_size_mb": 11.61,
+    "sha256_hash": "ad3cbcd68516ef279730ce7ba719be2d10f7a8d2054178998279d8f92e3e87f7",
+    "export_duration_sec": 1.09,
+    "is_valid_onnx": true,
+    "graph_inputs": [
+      "images"
+    ],
+    "graph_outputs": [
+      "output0"
+    ]
+  },
+  {
+    "domain": "ships",
+    "checkpoint_path": "D:\\Accion_Lab\\checkpoints\\best.pt",
+    "onnx_path": "D:\\Accion_Lab\\artifacts\\exports\\ships.onnx",
+    "input_resolution": [
+      640,
+      640
+    ],
+    "opset": 12,
+    "dynamic_axes": false,
+    "file_size_bytes": 9747864,
+    "file_size_mb": 9.3,
+    "sha256_hash": "3d5ad5d76fd175892bfed64baf9fb87ce48e53fdbbc11a363f567ff152178bc3",
+    "export_duration_sec": 3.81,
+    "is_valid_onnx": true,
+    "graph_inputs": [
+      "images"
+    ],
+    "graph_outputs": [
+      "output0"
+    ]
+  },
+  {
+    "domain": "space_electronics",
+    "checkpoint_path": "D:\\Accion_Lab\\checkpoints\\space_electronics.pt",
+    "onnx_path": "D:\\Accion_Lab\\artifacts\\exports\\space_electronics.onnx",
+    "input_resolution": [
+      640,
+      640
+    ],
+    "opset": 12,
+    "dynamic_axes": false,
+    "file_size_bytes": 9747819,
+    "file_size_mb": 9.3,
+    "sha256_hash": "6082629db480fe1933dca033ffb8617eff5716c8ae337fe39a5bdd8af11de6af",
+    "export_duration_sec": 3.66,
+    "is_valid_onnx": true,
+    "graph_inputs": [
+      "images"
+    ],
+    "graph_outputs": [
+      "output0"
+    ]
+  }
+]
