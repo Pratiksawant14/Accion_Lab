@@ -624,6 +624,99 @@ def build_document():
         "└── tests/                   # 37 comprehensive pytest unit & integration tests\n"
     )
 
+    # =========================================================================
+    # SECTION 12: TEAM 5C HANDOVER & REAL-WORLD EDGE DEPLOYMENT SPECIFICATION
+    # =========================================================================
+    h1 = doc.add_heading(level=1)
+    run_h1 = h1.add_run("12. Team 5C Handover & Real-World Edge Deployment Specification")
+    run_h1.font.color.rgb = COLOR_PRIMARY
+
+    p = doc.add_paragraph()
+    p.add_run(
+        "This section serves as the definitive handover guide for Team 5C (Downstream Telemetry Consumption & System UI). "
+        "It details the real-world operational architecture, how the edge pipeline connects to Team 5C's dashboard, the empirical "
+        "model accuracy baseline, and the exact UI rendering rules required to handle incoming detections."
+    )
+
+    doc.add_heading("12.1 Real-World Operational Architecture", level=2)
+    p = doc.add_paragraph()
+    p.add_run(
+        "In the production deployment environment, the end-to-end vision data flow operates across three physical layers:\n"
+        "1. Physical Sensing Layer: Edge cameras stream video frames at field locations (agricultural drones, maritime coastal cameras, PCB inspection rigs).\n"
+        "2. Team 5B Edge Processing Layer: The physical edge gateway (e.g., Raspberry Pi 5 or NVIDIA Jetson Orin Nano) runs our UnifiedInferenceRouter. "
+        "It executes ONNX runtime inference, translates domain-local indices to global taxonomy (0..5), checks coordinate bounding limits, "
+        "and structures payloads conforming to Team 5C's specification.\n"
+        "3. Network Fault-Tolerant Transmission: In remote field environments where satellite, cellular, or WiFi drops occur, our MQTTTelemetryPublisher "
+        "automatically captures messages in a 1,000-message in-memory circular ring buffer. When the connection to Team 5C's broker is restored, "
+        "all queued messages flush automatically in strict FIFO order.\n"
+        "4. Team 5C Mission Dashboard: Team 5C subscribes to the MQTT topic and visualizes live telemetry, bounding boxes, and system health metrics."
+    )
+
+    doc.add_heading("12.2 Empirical Model Quality & Accuracy Ground Truth", level=2)
+    p = doc.add_paragraph()
+    p.add_run(
+        "To ensure absolute transparency and engineering rigor, Team 5B conducted formal validation runs using Ultralytics YOLO.val "
+        "on the actual model weights against the Synthline validation datasets. The empirical results are documented below:"
+    )
+
+    eval_table = doc.add_table(rows=1, cols=6)
+    format_table(
+        eval_table,
+        [1.6, 1.0, 1.0, 1.0, 1.0, 1.0],
+        ["Domain Model", "mAP@0.5", "mAP@0.5:0.95", "Precision", "Recall", "Instances"],
+        [
+            ["Agriculture (YOLOv8n)", "30.4%", "30.4%", "25.7%", "99.8%", "62 / 245 imgs"],
+            ["Ships (YOLO26n)", "27.6%", "27.6%", "25.3%", "100.0%", "57 / 213 imgs"],
+            ["Space (YOLO26n)", "20.5%", "20.5%", "18.6%", "64.6%", "44 / 220 imgs"]
+        ]
+    )
+    doc.add_paragraph().paragraph_format.space_after = Pt(8)
+
+    p = doc.add_paragraph()
+    p.add_run(
+        "Critical Takeaway for Team 5C:\n"
+        "Notice that Recall is nearly 100% across Agriculture and Ships, while Precision is ~25%. This is the mathematical signature of "
+        "the Full-Frame Pseudo-Box issue: the supplied models were trained on synthetic images where the bounding box was set to the entire image "
+        "(width=1.0, height=1.0). Consequently, the model fires a full-frame prediction on every target image (achieving 100% recall), but on "
+        "unannotated background images (which comprise ~70% of validation sets), it generates false positives, reducing precision to 25%."
+    )
+
+    doc.add_heading("12.3 Exact UI Rendering Guidelines for Team 5C", level=2)
+    p = doc.add_paragraph()
+    p.add_run(
+        "Team 5B embedded automated pseudo-box detection directly into the telemetry payload via the boolean flag 'is_pseudo_box'. "
+        "Team 5C's UI dashboard should implement the following conditional rendering logic:\n\n"
+        "• CASE 1 — When 'is_pseudo_box': true\n"
+        "  The detection represents a full-frame synthetic classification alert rather than a localized object.\n"
+        "  -> UI Action: Display an Image-Level Alert Banner / Badge on the dashboard (e.g. 'WARNING: Cargo Ship Detected in Sector' "
+        "or 'DEFECT: Short Circuit Anomaly Detected'). Do NOT draw a giant box over the entire frame.\n\n"
+        "• CASE 2 — When 'is_pseudo_box': false\n"
+        "  The detection represents a real, localized object with sub-frame coordinates.\n"
+        "  -> UI Action: Draw a standard bounding box canvas overlay using (x_min, y_min, x_max, y_max) scaled to the display canvas resolution."
+    )
+
+    doc.add_heading("12.4 Quick-Start Ingestion Code for Team 5C (JavaScript / Node.js)", level=2)
+    p = doc.add_paragraph()
+    p.add_run(
+        "Team 5C can connect their dashboard to Team 5B's live stream using this client snippet:\n"
+        "const mqtt = require('mqtt');\n"
+        "const client = mqtt.connect('mqtt://localhost:1883');\n\n"
+        "client.on('connect', () => {\n"
+        "  console.log('Connected to Team 5B Edge Stream');\n"
+        "  client.subscribe('telemetry/edge/team5b/inference', { qos: 1 });\n"
+        "});\n\n"
+        "client.on('message', (topic, message) => {\n"
+        "  const payload = JSON.parse(message.toString());\n"
+        "  payload.detections.forEach(det => {\n"
+        "    if (det.box.is_pseudo_box) {\n"
+        "      renderClassificationBadge(det.global_class_name, det.confidence);\n"
+        "    } else {\n"
+        "      drawBoundingBox(det.box, det.global_class_name);\n"
+        "    }\n"
+        "  });\n"
+        "});"
+    )
+
     # Save document
     out_dir = Path("docs")
     out_dir.mkdir(parents=True, exist_ok=True)
