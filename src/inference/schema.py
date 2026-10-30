@@ -95,6 +95,7 @@ class InferenceResult(BaseModel):
             "frame_id": self.frame_id,
             "timestamp": self.timestamp,
             "domain": self.domain,
+            "model_name": self.model_name,
             "model_version": self.model_version,
             "latency_ms": round(self.inference_time_ms, 2),
             "bounding_boxes": [
@@ -104,4 +105,5 @@ class InferenceResult(BaseModel):
             "class_labels": [d.global_class_name for d in self.detections],
             "global_class_ids": [d.global_class_id for d in self.detections],
             "confidence_scores": [round(d.confidence, 4) for d in self.detections],
+            "pseudo_box_flags": [d.box.is_pseudo_box for d in self.detections],
         }
